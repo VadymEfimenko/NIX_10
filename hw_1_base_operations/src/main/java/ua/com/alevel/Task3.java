@@ -10,7 +10,9 @@ public class Task3 {
         int lessonNumber = scanner.nextInt();
 
         //Последнюю перемену не считаем, поэтому lessonNumber-1 (количество перемен)
-        int minutesOfDay = 9*60 + lessonNumber*45 + (lessonNumber-1)*10;
+        int sumBreakTime = (lessonNumber-1)*10 - 5*((lessonNumber-1)%2);
+
+        int minutesOfDay = 9*60 + lessonNumber*45 + sumBreakTime;
 
         int hours = minutesOfDay/60;
         int minutes = minutesOfDay - hours*60;
