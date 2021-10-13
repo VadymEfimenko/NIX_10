@@ -17,7 +17,7 @@ public class Task3 {
         int hours = minutesOfDay/60;
         int minutes = minutesOfDay - hours*60;
 
-        System.out.println(hours + " " + minutes);
+        System.out.println(hours + " : " + minutes);
 
     }
 }
