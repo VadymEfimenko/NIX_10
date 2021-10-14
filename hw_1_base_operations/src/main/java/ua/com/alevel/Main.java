@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Task1 task1 = new Task1();
-        Task2 task2 = new Task2();
-        Task3 task3 = new Task3();
+        SumNumbersInString task1 = new SumNumbersInString();
+        CountCharInString task2 = new CountCharInString();
+        EndLessonsTime endLessonsTime = new EndLessonsTime();
 
         Scanner scanner = new Scanner(System.in);
 
@@ -26,7 +26,7 @@ public class Main {
 
                 } else if (choice == 3) {
                     System.out.println("task 3:");
-                    task3.task3Run();
+                    endLessonsTime.task3Run();
 
                 } else if (choice == 0) {
                     System.out.println("end program");

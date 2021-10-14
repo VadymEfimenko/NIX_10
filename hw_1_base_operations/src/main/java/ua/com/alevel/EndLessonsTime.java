@@ -2,7 +2,7 @@ package ua.com.alevel;
 
 import java.util.Scanner;
 
-public class Task3 {
+public class EndLessonsTime {
     public void task3Run() {
 
         Scanner scanner = new Scanner(System.in);

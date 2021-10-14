@@ -1,18 +1,9 @@
 package ua.com.alevel;
-/*
 
-реализуйте задачу, которая принимает строку с консоли и вычленяет все числа
-и находит их сумму
-
-Пример:
-Входные данные: 1w4tt!7
-Выходные данные: 12
-
- */
 
 import java.util.Scanner;
 
-public class Task1 {
+public class SumNumbersInString {
     public void task1Run () {
 
         Scanner scanner = new Scanner(System.in);

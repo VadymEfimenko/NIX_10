@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-public class Task2 {
+public class CountCharInString {
     public void task2Run() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter your string to count characters");
