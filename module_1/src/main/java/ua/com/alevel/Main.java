@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         //L1_T1_UniqueNumbers l1T1UniqueNumbers = new L1_T1_UniqueNumbers();
         L1_T2_Chess l1_t2_chess = new L1_T2_Chess();
-        l1_t2_chess.horseStepIsPossible('a',8,'c',0);
+        l1_t2_chess.horseStepIsPossible('d',4,'c',0);
 
     }
 }
