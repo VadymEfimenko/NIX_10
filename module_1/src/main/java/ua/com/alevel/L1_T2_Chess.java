@@ -7,10 +7,10 @@ import java.util.Scanner;
 public class L1_T2_Chess {
     public void horseStepIsPossible() {
 
-        char startPosLetter;
-        int startPosNumber;
-        char finPosLetter;
-        int finPosNumber;
+        final char startPosLetter;
+        final int startPosNumber;
+        final char finPosLetter;
+        final int finPosNumber;
 
         //кодировка в юникоде
         char horse = 9822;
