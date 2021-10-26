@@ -1,12 +1,9 @@
 package ua.com.alevel;
 
-
 import java.util.ArrayList;
 import java.util.Stack;
 
 public class L2_T1_PermissibleString {
-
-
     public boolean isValid(String userString) {
         String s = onlyBrackets(userString);
         Stack<Character> stack = new Stack<>();
@@ -33,7 +30,6 @@ public class L2_T1_PermissibleString {
                 brackets.add(userString.charAt(indexChar));
             }
         }
-
         char[] brack = new char[brackets.size()];
         for (int i = 0; i < brackets.size(); i++) {
             brack[i] = (char) brackets.get(i);
