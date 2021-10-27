@@ -3,6 +3,7 @@ package ua.com.alevel;
 import java.util.Scanner;
 
 public class L1_T3_TriangleArea {
+
     public void areaOfTriangle() {
 
         double abLength;
@@ -32,7 +33,7 @@ public class L1_T3_TriangleArea {
         System.out.println("Введите Cy");
         double Cy = scanner.nextDouble();
 
-        if(isOnLine(Ax,Ay,Bx,By,Cx,Cy)){
+        if (isOnLine(Ax, Ay, Bx, By, Cx, Cy)) {
             System.out.println("Точки на одной прямой, треугольник невозможен!");
         } else {
 
@@ -58,10 +59,34 @@ public class L1_T3_TriangleArea {
         return length;
     }
 
-    private boolean isOnLine (double Ax, double Ay,
-                              double Bx, double By,
-                              double Cx, double Cy){
+    private boolean isOnLine(double Ax, double Ay,
+                             double Bx, double By,
+                             double Cx, double Cy) {
         boolean onLine = (Cx * (By - Ay) - Cy * (Bx - Ax) == Ax * By - Bx * Ay);
         return onLine;
+    }
+}
+
+class TriangleAreaRun {
+    L1_T3_TriangleArea triangleArea = new L1_T3_TriangleArea();
+    Scanner scanner = new Scanner(System.in);
+
+    public void triangleAreaRun() {
+        try {
+            int selector = 1;
+            while (selector != 0) {
+                triangleArea.areaOfTriangle();
+
+                System.out.println("Решить задачу еще раз?\n" +
+                        "1 - ДА\n" +
+                        "0 - Вернуться в меню");
+                selector = scanner.nextInt();
+            }
+        } catch (Exception e) {
+            int selector = 1;
+            System.out.println("Введены некоректные данные\n" +
+                    "нажмите 1 чтобы вернуться в меню и запустите задачу снова");
+            selector = scanner.nextInt();
+        }
     }
 }

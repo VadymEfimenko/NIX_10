@@ -1,8 +1,12 @@
 package ua.com.alevel;
-import java.util.Random;
 
-public class L2_T2_RandomBinaryTree {
+import java.util.Random;
+import java.util.Scanner;
+
+
+class L2_T2_RandomBinaryTree {
     private Random random = new Random();
+
 
     public TreeNode binaryTreeGenerator(int n, int key) {
         if (n == 0)
@@ -58,5 +62,33 @@ class Solution {
         int Right = maxDepth(root.right);
 
         return Math.max(Left, Right) + 1;
+    }
+}
+
+class BinaryTreeRun {
+    public void binTreeRun() {
+        int selector = 1;
+        int countNodes;
+        int key;
+        while (selector != 0) {
+            L2_T2_RandomBinaryTree randomBinaryTree = new L2_T2_RandomBinaryTree();
+            Solution solution = new Solution();
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Постройте дерево!\n" +
+                    "введите количество узлов и значение узла соответсвенно:\n" +
+                    "Вводите только цифры чтобы программа продолжала работу!");
+
+            countNodes = scanner.nextInt();
+            key = scanner.nextInt();
+
+            int maxDeep = solution.maxDepth(randomBinaryTree.binaryTreeGenerator(countNodes, key));
+            System.out.println(maxDeep);
+
+            System.out.println("Решить задачу еще раз?\n" +
+                    "1 - ДА\n" +
+                    "0 - Вернуться в меню");
+            selector = scanner.nextInt();
+        }
     }
 }
