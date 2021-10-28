@@ -83,7 +83,7 @@ class BinaryTreeRun {
             key = scanner.nextInt();
 
             int maxDeep = solution.maxDepth(randomBinaryTree.binaryTreeGenerator(countNodes, key));
-            System.out.println(maxDeep);
+            System.out.println("Максимальная глубина дерева:" + maxDeep);
 
             System.out.println("Решить задачу еще раз?\n" +
                     "1 - ДА\n" +

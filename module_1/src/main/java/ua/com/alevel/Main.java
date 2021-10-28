@@ -3,7 +3,7 @@ package ua.com.alevel;
 import java.util.Scanner;
 
 public class Main {
-    private static int selector = 1;
+    private static int selector;
 
     public static void main(String[] args) {
         BinaryTreeRun binaryTreeRun = new BinaryTreeRun();
@@ -13,7 +13,7 @@ public class Main {
         PermissibleStringRun permissibleStringRun = new PermissibleStringRun();
         Scanner scanner = new Scanner(System.in);
 
-        while (selector != 0) {
+        while (true) {
             System.out.println("Выберите задачу от 1 до 6:\n" +
                     "ПЕРВЫЙ УРОВЕНЬ\n" +
                     "1 - Число уникальных цифр в строке\n" +
@@ -26,13 +26,24 @@ public class Main {
                     "6 - Игра жизнь\n" +
                     "0 - ВЫХОД");
 
-            selector = scanner.nextInt();
+            try {
+                selector = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("Введены неправильные данные\n" +
+                        "Ведите номер задачи от 1 до 6");
+                 scanner = new Scanner(System.in);
+                selector = scanner.nextInt();
+                continue;
+            }
             switch (selector) {
                 case 1 -> uniqueNumbersRun.uniqueNumbersRun();
                 case 2 -> chessRun.chessRun();
                 case 3 -> triangleAreaRun.triangleAreaRun();
                 case 4 -> permissibleStringRun.permissibleStringRun();
                 case 5 -> binaryTreeRun.binTreeRun();
+            }
+            if (selector == 0){
+                break;
             }
         }
     }
