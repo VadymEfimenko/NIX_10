@@ -1,4 +1,4 @@
-package ua.com.alevel.gameoflife;
+package ua.com.alevel.level3;
 
 import javax.swing.SwingUtilities;
 

@@ -1,6 +1,6 @@
 package ua.com.alevel;
 
-import ua.com.alevel.gameoflife.RunGameOfLife;
+import ua.com.alevel.level3.RunGameOfLife;
 
 
 import java.util.Scanner;

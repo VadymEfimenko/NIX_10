@@ -45,7 +45,7 @@ public class L1_T3_TriangleArea {
             triangleArea = Math.sqrt(semiPerimeter * (semiPerimeter - abLength) *
                     (semiPerimeter - bcLength) *
                     (semiPerimeter - acLength));
-            System.out.println("Площадь треугольника");
+            System.out.println("Площадь вашего треугольника");
             System.out.printf( "%.4f", triangleArea);
             System.out.println();
         }
