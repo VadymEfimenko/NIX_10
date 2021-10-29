@@ -1,5 +1,8 @@
 package ua.com.alevel;
 
+import ua.com.alevel.gameoflife.RunGameOfLife;
+
+
 import java.util.Scanner;
 
 public class Main {
@@ -11,6 +14,7 @@ public class Main {
         ChessRun chessRun = new ChessRun();
         TriangleAreaRun triangleAreaRun = new TriangleAreaRun();
         PermissibleStringRun permissibleStringRun = new PermissibleStringRun();
+        RunGameOfLife run = new RunGameOfLife();
         Scanner scanner = new Scanner(System.in);
 
         while (true) {
@@ -41,6 +45,7 @@ public class Main {
                 case 3 -> triangleAreaRun.triangleAreaRun();
                 case 4 -> permissibleStringRun.permissibleStringRun();
                 case 5 -> binaryTreeRun.binTreeRun();
+                case 6 -> run.start();
             }
             if (selector == 0){
                 break;

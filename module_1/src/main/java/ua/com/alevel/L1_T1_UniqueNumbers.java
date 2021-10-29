@@ -14,6 +14,7 @@ public class L1_T1_UniqueNumbers {
                 uniqueNumbers.add((int) numberAtIndex);
             }
         }
+
         return uniqueNumbers.size();
     }
 }
@@ -30,8 +31,7 @@ class UniqueNumbersRun {
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("Введите вашу строку:");
                 userString = scanner.nextLine();
-                System.out.println(uniqueNumbers.countUniqueNumbersInString(userString));
-
+                System.out.println("Количество уникальных цифр: " + uniqueNumbers.countUniqueNumbersInString(userString));
                 System.out.println("Решить задачу еще раз?\n" +
                         "1 - ДА\n" +
                         "0 - Вернуться в меню");
