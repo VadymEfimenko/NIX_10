@@ -127,7 +127,7 @@ public class MainWindow extends JFrame {
             public void windowClosing(WindowEvent e) {
                 if(confirmExit()) {
                     MainWindow.this.dispose();
-                    return;
+                    System.exit(0);
                 }
             }
         });
