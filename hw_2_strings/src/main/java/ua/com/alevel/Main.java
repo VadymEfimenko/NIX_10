@@ -6,6 +6,7 @@ public class Main {
     public static int selector = 1;
     public static int innerSelector = 1;
 
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -14,7 +15,15 @@ public class Main {
                     "Если хотите развернуть подстроку в строке введите 2\n" +
                     "Если хотите развернуть подстроку по индексу введите 3\n" +
                     "Чтобы выйти введите 0");
-            int choice = scanner.nextInt();
+            int choice = 0;
+            try {
+                choice = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("Вы ввели неверные данные\n" +
+                        "ВЫХОД");
+                break;
+            }
+
             if (choice == 1) {
                 innerSelector = 1;
                 while (innerSelector != 0) {
@@ -61,6 +70,10 @@ public class Main {
             if (choice == 0) {
                 selector = 0;
             }
+            else {
+                System.out.println("Введите цифру от 1 до 3 или 0 для выхода!");
+            }
         }
     }
 }
+

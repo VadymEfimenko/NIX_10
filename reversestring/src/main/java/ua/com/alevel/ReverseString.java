@@ -6,11 +6,11 @@ public final class ReverseString {
     }
 
     public static String reverseString(String userString) {
-        byte[] stringAsByteArray = userString.getBytes();
-        byte[] result = new byte[stringAsByteArray.length];
+        char[] stringAsArray = userString.toCharArray();
+        char[] result = new char[stringAsArray.length];
 
-        for (int i = 0; i < stringAsByteArray.length; i++)
-            result[i] = stringAsByteArray[stringAsByteArray.length - i - 1];
+        for (int i = 0; i < stringAsArray.length; i++)
+            result[i] = stringAsArray[stringAsArray.length - i - 1];
         return new String(result);
     }
 
