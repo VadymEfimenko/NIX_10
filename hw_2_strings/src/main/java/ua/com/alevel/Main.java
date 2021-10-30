@@ -57,8 +57,8 @@ public class Main {
                             "0 - Выход в меню");
                     innerSelector = scanner.nextInt();
                 }
-
-            } if (choice == 0){
+            }
+            if (choice == 0) {
                 selector = 0;
             }
         }
