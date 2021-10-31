@@ -26,21 +26,11 @@ public class DBUser {
     }
 
     public static int[] removeTheElement(Object[] arr, int index) {
-
-        // Create another array of size one less
         int[] anotherArray = new int[arr.length - 1];
-
-        // Copy the elements from starting till index
-        // from original array to the other array
         System.arraycopy(arr, 0, anotherArray, 0, index);
-
-        // Copy the elements from index + 1 till end
-        // from original array to the other array
         System.arraycopy(arr, index + 1,
                 anotherArray, index,
                 arr.length - index - 1);
-
-        // return the resultant array
         return anotherArray;
     }
 
