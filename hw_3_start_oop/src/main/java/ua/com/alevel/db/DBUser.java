@@ -1,7 +1,6 @@
 package ua.com.alevel.db;
 
 import ua.com.alevel.entity.User;
-
 import java.util.Arrays;
 import java.util.UUID;
 
