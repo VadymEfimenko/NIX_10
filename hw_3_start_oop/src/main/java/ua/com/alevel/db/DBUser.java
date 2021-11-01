@@ -1,5 +1,6 @@
 package ua.com.alevel.db;
 
+import org.apache.commons.lang3.ArrayUtils;
 import ua.com.alevel.entity.User;
 
 import java.util.Arrays;
@@ -59,14 +60,7 @@ public class DBUser {
     public void delete(String id) {
         for (int i = 0; i < users.length; i++) {
             if (id.equals(users[i].getId())) {
-                for (int j = i; j < users.length; j++) {
-                    if (j != users.length - 1) {
-                        users[j] = users[j + 1];
-                    } else {
-                        users[j] = null;
-                    }
-                }
-                break;
+                users = ArrayUtils.removeElement(users, users[i]);
             }
         }
     }

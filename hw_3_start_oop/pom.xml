@@ -19,6 +19,14 @@
         <maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+    </dependencies>
+
     <build>
         <finalName>hw_3_start_oop</finalName>
         <plugins>
