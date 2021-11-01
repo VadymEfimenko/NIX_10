@@ -1,6 +1,7 @@
 package ua.com.alevel.db;
 
 import ua.com.alevel.entity.User;
+
 import java.util.Arrays;
 import java.util.UUID;
 
@@ -13,7 +14,7 @@ public class DBUser {
         users = new User[0];
     }
 
-    private static DBUser getInstance() {
+    public static DBUser getInstance() {
         if (instance == null) {
             instance = new DBUser();
         }
@@ -22,15 +23,6 @@ public class DBUser {
 
     public static User[] findAll() {
         return users;
-    }
-
-    public static int[] removeTheElement(Object[] arr, int index) {
-        int[] anotherArray = new int[arr.length - 1];
-        System.arraycopy(arr, 0, anotherArray, 0, index);
-        System.arraycopy(arr, index + 1,
-                anotherArray, index,
-                arr.length - index - 1);
-        return anotherArray;
     }
 
     public void create(User user) {
@@ -65,9 +57,18 @@ public class DBUser {
     }
 
     public void delete(String id) {
-        User userDelete = findById(id);
-        Arrays.sort(users);
-        int position = Arrays.binarySearch(users, userDelete);
-        removeTheElement(users, position);
+        for (int i = 0; i < users.length; i++) {
+            if (id.equals(users[i].getId())) {
+                for (int j = i; j < users.length; j++) {
+                    if (j != users.length - 1) {
+                        users[j] = users[j + 1];
+                    } else {
+                        users[j] = null;
+                    }
+                }
+                break;
+            }
+        }
     }
 }
+
