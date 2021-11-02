@@ -7,10 +7,10 @@ import java.util.Scanner;
 public class L1_T2_Chess {
     public void horseStepIsPossible() {
 
-        char startPosLetter;
-        int startPosNumber;
-        char finPosLetter;
-        int finPosNumber;
+        final char startPosLetter;
+        final int startPosNumber;
+        final char finPosLetter;
+        final int finPosNumber;
 
         //кодировка в юникоде
         char horse = 9822;
@@ -80,8 +80,30 @@ public class L1_T2_Chess {
             System.out.println(i + 1 + " " + Arrays.toString(chessBoard[i]));
         }
         System.out.println("  " + " A  " + " B  " + " C  " + "D  " + " E  " + " F  " + "G  " + " H");
+    }
+}
 
+class ChessRun {
+    L1_T2_Chess chess = new L1_T2_Chess();
+    Scanner scanner = new Scanner(System.in);
 
+    public void chessRun() {
+        try {
+            int selector = 1;
+            while (selector != 0) {
+                chess.horseStepIsPossible();
+
+                System.out.println("Решить задачу еще раз?\n" +
+                        "1 - ДА\n" +
+                        "0 - Вернуться в меню");
+                selector = scanner.nextInt();
+            }
+        } catch (Exception e) {
+            int selector = 1;
+            System.out.println("Введены некоректные данные\n" +
+                    "нажмите 1 чтобы вернуться в меню и запустите задачу снова");
+            selector = scanner.nextInt();
+        }
     }
 }
 
