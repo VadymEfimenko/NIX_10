@@ -69,6 +69,7 @@ public class L1_T3_TriangleArea {
 }
 
 class TriangleAreaRun {
+
     L1_T3_TriangleArea triangleArea = new L1_T3_TriangleArea();
     Scanner scanner = new Scanner(System.in);
 

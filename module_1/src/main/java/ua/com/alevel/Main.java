@@ -6,6 +6,7 @@ import ua.com.alevel.level3.RunGameOfLife;
 import java.util.Scanner;
 
 public class Main {
+
     private static int selector;
 
     public static void main(String[] args) {
