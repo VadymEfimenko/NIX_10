@@ -25,6 +25,8 @@
         <module>ReverseString</module>
         <module>module_1</module>
         <module>hw_3_start_oop</module>
+        <module>hw_5_collection</module>
+        <module>MathSet</module>
     </modules>
     <packaging>pom</packaging>
 
