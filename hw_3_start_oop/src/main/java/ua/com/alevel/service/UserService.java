@@ -4,6 +4,7 @@ import ua.com.alevel.dao.UserDao;
 import ua.com.alevel.entity.User;
 
 public class UserService {
+
     private static final UserDao userDao = new UserDao();
 
     public static User[] findAll() {

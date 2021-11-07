@@ -3,10 +3,9 @@ package ua.com.alevel;
 import java.util.Random;
 import java.util.Scanner;
 
-
 class L2_T2_RandomBinaryTree {
-    private Random random = new Random();
 
+    private Random random = new Random();
 
     public TreeNode binaryTreeGenerator(int n, int key) {
         if (n == 0)
@@ -26,6 +25,7 @@ class L2_T2_RandomBinaryTree {
 }
 
 class TreeNode {
+
     int key;
     TreeNode left;
     TreeNode right;
@@ -54,18 +54,15 @@ class TreeNode {
 class Solution {
 
     public int maxDepth(TreeNode root) {
-
         if (root == null) return 0;
-
         int Left = maxDepth(root.left);
-
         int Right = maxDepth(root.right);
-
         return Math.max(Left, Right) + 1;
     }
 }
 
 class BinaryTreeRun {
+
     public void binTreeRun() {
         int selector = 1;
         int countNodes;

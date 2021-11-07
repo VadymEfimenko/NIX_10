@@ -1,38 +1,15 @@
 package ua.com.alevel.level3;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JSlider;
+import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.util.Timer;
+import java.util.*;
 
 
 public class MainWindow extends JFrame {
@@ -40,7 +17,7 @@ public class MainWindow extends JFrame {
     private static final int DEAD = 0;
     private static final int ALIVE = 1;
     private static final int DEFAULT_GRID_SIZE = 75;
-    private static final int THRESHOLD = (int)(Math.pow(DEFAULT_GRID_SIZE, 2) * (0.25f));
+    private static final int THRESHOLD = (int) (Math.pow(DEFAULT_GRID_SIZE, 2) * (0.25f));
     private static final int DEFAULT_PADDING = 5;
 
     private static final int WINDOW_WIDTH = 1375;
@@ -125,7 +102,7 @@ public class MainWindow extends JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                if(confirmExit()) {
+                if (confirmExit()) {
                     MainWindow.this.dispose();
                     System.exit(0);
                 }
@@ -162,20 +139,20 @@ public class MainWindow extends JFrame {
     public void initGrid() {
         gridPanel.setBackground(DEFAULT_GUI_BACKGROUND);
         gridPanel.setLayout(new GridLayout(grid.length, grid.length, 0, 0));
-        for(int i=0; i<grid.length; i++) {
-            for(int j=0; j<grid[i].length; j++) {
-                final int x =i , y = j;
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[i].length; j++) {
+                final int x = i, y = j;
                 grid[i][j] = new JPanel();
                 grid[i][j].setBackground(DEFAULT_BACKGROUND);
                 grid[i][j].setBorder(DEFAULT_BORDER);
-                grid[i][j].addMouseListener(new MouseListener(){
+                grid[i][j].addMouseListener(new MouseListener() {
 
                     @Override
                     public void mouseClicked(MouseEvent e) {
 
-                        if(!inProgress) {
-                            flipCell(x ,y);
-                            if(!start.isEnabled()) {
+                        if (!inProgress) {
+                            flipCell(x, y);
+                            if (!start.isEnabled()) {
                                 start.setEnabled(true);
                             }
                             minPopulation = curPopulation;
@@ -190,7 +167,7 @@ public class MainWindow extends JFrame {
                     @Override
                     public void mouseReleased(MouseEvent e) {
                         mousePressed = false;
-                        if(!start.isEnabled()) {
+                        if (!start.isEnabled()) {
                             start.setEnabled(true);
                         }
                         minPopulation = curPopulation;
@@ -199,7 +176,7 @@ public class MainWindow extends JFrame {
                     @Override
                     public void mouseEntered(MouseEvent e) {
                         setLastPoint(new Point(x, y));
-                        if(mousePressed && !inProgress) {
+                        if (mousePressed && !inProgress) {
                             flipCell(x, y);
                         }
                     }
@@ -245,10 +222,11 @@ public class MainWindow extends JFrame {
 
         // event listeners
         reset.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 System.out.println("Resetting grid");
-                if(inProgress)
+                if (inProgress)
                     haltGame();
                 killAll();
                 initValues();
@@ -257,10 +235,11 @@ public class MainWindow extends JFrame {
             }
         });
 
-        init.addActionListener(new ActionListener(){
+        init.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!inProgress) {
+                if (!inProgress) {
                     generateRandomPopulation();
                     start.setEnabled(true);
                     reset.setEnabled(true);
@@ -270,10 +249,10 @@ public class MainWindow extends JFrame {
         });
 
         // start is used both for play and pause
-        start.addActionListener(new ActionListener(){
+        start.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 stop.setEnabled(true);
                 plusOne.setEnabled(false);
                 inProgress = true;
@@ -282,7 +261,8 @@ public class MainWindow extends JFrame {
             }
         });
 
-        stop.addActionListener(new ActionListener(){
+        stop.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 plusOne.setEnabled(true);
@@ -290,7 +270,8 @@ public class MainWindow extends JFrame {
             }
         });
 
-        plusOne.addActionListener(new ActionListener(){
+        plusOne.addActionListener(new ActionListener() {
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 advanceToNextGen();
@@ -319,7 +300,7 @@ public class MainWindow extends JFrame {
 
         leftPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         leftPanel.setBackground(DEFAULT_GUI_BACKGROUND);
-        if(frameRateSlider == null)
+        if (frameRateSlider == null)
             initSlider();
         leftPanel.add(frameRateSlider);
 
@@ -362,10 +343,9 @@ public class MainWindow extends JFrame {
         gridBorderCheck.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if(gridBorderCheck.isSelected()) {
+                if (gridBorderCheck.isSelected()) {
                     enableGridBorders();
-                }
-                else {
+                } else {
                     disableGridBorders();
                 }
             }
@@ -374,10 +354,9 @@ public class MainWindow extends JFrame {
         leaveTrailCheck.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if(leaveTrailCheck.isSelected()) {
+                if (leaveTrailCheck.isSelected()) {
                     enableTrails();
-                }
-                else {
+                } else {
                     disableTrails();
                 }
             }
@@ -386,11 +365,10 @@ public class MainWindow extends JFrame {
         wrapGridCheck.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                if(!inProgress) {
-                    if(wrapGridCheck.isSelected()) {
+                if (!inProgress) {
+                    if (wrapGridCheck.isSelected()) {
                         enableGridWrapping();
-                    }
-                    else {
+                    } else {
                         disableGridWrapping();
                     }
                 }
@@ -425,19 +403,19 @@ public class MainWindow extends JFrame {
         frameRateSlider.setPaintTicks(true);
         frameRateSlider.setForeground(DEFAULT_GUI_FOREGROUND);
 
-        int medium = (MAX_TICK_INTERVAL + MIN_TICK_INTERVAL)/2;
+        int medium = (MAX_TICK_INTERVAL + MIN_TICK_INTERVAL) / 2;
         Hashtable<Integer, JLabel> sliderLabels = new Hashtable<Integer, JLabel>();
 
-        sliderLabels.put(MIN_TICK_INTERVAL, getStylizedLabel(SLIDER_FONT, DEFAULT_GUI_FOREGROUND ,"FAST"));
-        sliderLabels.put(medium, getStylizedLabel(SLIDER_FONT, DEFAULT_GUI_FOREGROUND ,"MED"));
-        sliderLabels.put(MAX_TICK_INTERVAL, getStylizedLabel(SLIDER_FONT, DEFAULT_GUI_FOREGROUND ,"SLOW"));
+        sliderLabels.put(MIN_TICK_INTERVAL, getStylizedLabel(SLIDER_FONT, DEFAULT_GUI_FOREGROUND, "FAST"));
+        sliderLabels.put(medium, getStylizedLabel(SLIDER_FONT, DEFAULT_GUI_FOREGROUND, "MED"));
+        sliderLabels.put(MAX_TICK_INTERVAL, getStylizedLabel(SLIDER_FONT, DEFAULT_GUI_FOREGROUND, "SLOW"));
 
         frameRateSlider.setLabelTable(sliderLabels);
 
         frameRateSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                JSlider slider = (JSlider)e.getSource();
+                JSlider slider = (JSlider) e.getSource();
                 System.out.println("current frame rate: " + slider.getValue());
                 setTickInterval(slider.getValue());
             }
@@ -478,7 +456,7 @@ public class MainWindow extends JFrame {
     }
 
     private void stopTicking() {
-        if(tickTimer != null) {
+        if (tickTimer != null) {
             tickTimer.cancel();
         }
     }
@@ -502,15 +480,15 @@ public class MainWindow extends JFrame {
     }
 
     private void updateStats() {
-        if(maxPopulation < curPopulation)
+        if (maxPopulation < curPopulation)
             maxPopulation = curPopulation;
-        if(minPopulation > curPopulation)
+        if (minPopulation > curPopulation)
             minPopulation = curPopulation;
     }
 
     private void flipCell(int x, int y) {
-        if(isValid(x, y)) {
-            if(isAlive(x, y))
+        if (isValid(x, y)) {
+            if (isAlive(x, y))
                 makeDead(x, y);
             else
                 makeAlive(x, y);
@@ -518,11 +496,11 @@ public class MainWindow extends JFrame {
     }
 
     private boolean isValid(int x, int y) {
-        return (x>=0 && x<currentGridSize) && (y>=0 && y<currentGridSize);
+        return (x >= 0 && x < currentGridSize) && (y >= 0 && y < currentGridSize);
     }
 
     private boolean isAlive(int x, int y) {
-        if(isValid(x , y))
+        if (isValid(x, y))
             return (cells[x][y] == ALIVE);
         else
             return false;
@@ -530,7 +508,7 @@ public class MainWindow extends JFrame {
 
     private void generateRandomPopulation() {
         Random r = new Random();
-        while(curPopulation < THRESHOLD)
+        while (curPopulation < THRESHOLD)
             flipCell(r.nextInt(currentGridSize), r.nextInt(currentGridSize));
         population.clear();
         population.add(curPopulation);
@@ -540,31 +518,31 @@ public class MainWindow extends JFrame {
 
     private int getAliveNeighbourCount(int x, int y) {
         int count = 0;
-        if(isAlive(x-1, y-1))
+        if (isAlive(x - 1, y - 1))
             count++;
-        if(isAlive(x-1, y))
+        if (isAlive(x - 1, y))
             count++;
-        if(isAlive(x-1, y+1))
+        if (isAlive(x - 1, y + 1))
             count++;
-        if(isAlive(x, y-1))
+        if (isAlive(x, y - 1))
             count++;
-        if(isAlive(x, y+1))
+        if (isAlive(x, y + 1))
             count++;
-        if(isAlive(x+1, y-1))
+        if (isAlive(x + 1, y - 1))
             count++;
-        if(isAlive(x+1, y))
+        if (isAlive(x + 1, y))
             count++;
-        if(isAlive(x+1, y+1))
+        if (isAlive(x + 1, y + 1))
             count++;
         return count;
     }
 
     private int[][] getNextGeneration() {
         int[][] nextGeneration = new int[cells.length][cells.length];
-        for(int i=0; i<nextGeneration.length; i++) {
-            for(int j=0; j<nextGeneration[i].length; j++) {
+        for (int i = 0; i < nextGeneration.length; i++) {
+            for (int j = 0; j < nextGeneration[i].length; j++) {
                 int aliveNeighbours = getAliveNeighbourCount(i, j);
-                if(aliveNeighbours == 3 || (isAlive(i, j) && aliveNeighbours == 2))
+                if (aliveNeighbours == 3 || (isAlive(i, j) && aliveNeighbours == 2))
                     nextGeneration[i][j] = ALIVE;
                 else
                     nextGeneration[i][j] = DEAD;
@@ -575,9 +553,9 @@ public class MainWindow extends JFrame {
 
     private void advanceToNextGen() {
         int[][] nextGen = getNextGeneration();
-        for(int i=0; i<cells.length; i++) {
-            for(int j=0; j<cells.length; j++) {
-                if(nextGen[i][j] != cells[i][j]) {
+        for (int i = 0; i < cells.length; i++) {
+            for (int j = 0; j < cells.length; j++) {
+                if (nextGen[i][j] != cells[i][j]) {
                     flipCell(i, j);
                 }
             }
@@ -585,9 +563,9 @@ public class MainWindow extends JFrame {
         curGeneration++;
         population.add(curPopulation);
         totPopulation += curPopulation;
-        avgPopulation = totPopulation/population.size();
+        avgPopulation = totPopulation / population.size();
         updateLabels();
-        if(isTerminalStage() || curPopulation == 0) {
+        if (isTerminalStage() || curPopulation == 0) {
             haltGame();
         }
     }
@@ -608,10 +586,10 @@ public class MainWindow extends JFrame {
 
     // get population difference between current & last gen
     private int getPopulationDifference() {
-        if(population.size() > 2)
-            return population.get(population.size()-1) - population.get(population.size()-2);
-        else if(population.size() == 1)
-            return population.get(population.size()-1);
+        if (population.size() > 2)
+            return population.get(population.size() - 1) - population.get(population.size() - 2);
+        else if (population.size() == 1)
+            return population.get(population.size() - 1);
         else
             return 0;
     }
@@ -619,8 +597,8 @@ public class MainWindow extends JFrame {
     private float getPercentageDifference() {
         int difference = getPopulationDifference();
         float percent;
-        if(population.size() >= 2 && population.get(population.size()-2) != 0)
-            percent = (difference / population.get(population.size()-2)) * 100;
+        if (population.size() >= 2 && population.get(population.size() - 2) != 0)
+            percent = (difference / population.get(population.size() - 2)) * 100;
         else
             percent = 0;
         return percent;
@@ -628,9 +606,9 @@ public class MainWindow extends JFrame {
 
     private String percentToString(float difference) {
         String str = "";
-        if(difference < 0)
+        if (difference < 0)
             str += DOWN_ARROW;
-        else if(difference > 0)
+        else if (difference > 0)
             str += UP_ARROW;
         str += " (" + difference + ")";
         return str;
@@ -646,21 +624,13 @@ public class MainWindow extends JFrame {
     }
 
     private boolean isTerminalStage() {
-		/*if(population.size() > 25) {
-			int i;
-			for(i=population.size()-2; i>0; i--)
-				if(population.get(i+1) != population.get(i))
-					break;
-			if(population.size() - i >= 25)
-				return true;
-		}*/
         return false;
     }
 
     private void killAll() {
-        for(int i=0; i<cells.length; i++)
-            for(int j=0; j<cells[i].length; j++) {
-                if(isAlive(i, j))
+        for (int i = 0; i < cells.length; i++)
+            for (int j = 0; j < cells[i].length; j++) {
+                if (isAlive(i, j))
                     makeDead(i, j, DEFAULT_BACKGROUND);
                 else
                     grid[i][j].setBackground(DEFAULT_BACKGROUND);
@@ -697,9 +667,9 @@ public class MainWindow extends JFrame {
     }
 
     private void setTickInterval(int value) {
-        if(curTickInterval != value) {
+        if (curTickInterval != value) {
             curTickInterval = value;
-            if(inProgress && tickTimer != null) {
+            if (inProgress && tickTimer != null) {
                 stopTicking();
                 startTicking();
             }

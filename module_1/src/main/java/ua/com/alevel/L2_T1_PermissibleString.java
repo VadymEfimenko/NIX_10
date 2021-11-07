@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.Stack;
 
 public class L2_T1_PermissibleString {
+
     public boolean isValid(String userString) {
         String s = onlyBrackets(userString);
         Stack<Character> stack = new Stack<>();
@@ -41,8 +42,8 @@ public class L2_T1_PermissibleString {
 }
 
 class PermissibleStringRun {
-    L2_T1_PermissibleString permissibleString = new L2_T1_PermissibleString();
 
+    L2_T1_PermissibleString permissibleString = new L2_T1_PermissibleString();
 
     public void permissibleStringRun() {
         Scanner scanner = new Scanner(System.in);

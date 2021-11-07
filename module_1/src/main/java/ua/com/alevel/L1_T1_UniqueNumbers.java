@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class L1_T1_UniqueNumbers {
+
     public int countUniqueNumbersInString(String userString) {
         ArrayList<Integer> uniqueNumbers = new ArrayList<>();
         for (int indexAtString = 0; indexAtString < userString.length(); indexAtString++) {
@@ -20,6 +21,7 @@ public class L1_T1_UniqueNumbers {
 }
 
 class UniqueNumbersRun {
+
     L1_T1_UniqueNumbers uniqueNumbers = new L1_T1_UniqueNumbers();
     String userString;
     Scanner scanner = new Scanner(System.in);

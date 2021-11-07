@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 //mismatch ex
 public class L1_T2_Chess {
+
     public void horseStepIsPossible() {
 
         final char startPosLetter;
@@ -84,6 +85,7 @@ public class L1_T2_Chess {
 }
 
 class ChessRun {
+
     L1_T2_Chess chess = new L1_T2_Chess();
     Scanner scanner = new Scanner(System.in);
 
