@@ -38,12 +38,14 @@ public class MathSet<T extends Number> {
         }
     }
 
-    public MathSet(MathSet numbers) {
-        mathSet = numbers.mathSet;
-    }
-
-    public MathSet(MathSet... numbers) {
-
+    public MathSet(MathSet... mathSets) {
+        mathSet = new Number[capacity];
+        for (int i = 0; i < mathSets.length; i++) {
+            Number[] temp = mathSets[i].toArray();
+            for (int j = 0; j < temp.length; j++) {
+                add(temp[j]);
+            }
+        }
     }
 
     public static int getFullness(MathSet ms) {
@@ -268,7 +270,6 @@ public class MathSet<T extends Number> {
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = null;
         }
-
     }
 
     public Number[] removeNull(MathSet ms) {
