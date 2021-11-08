@@ -176,12 +176,12 @@ public class MathSet<T extends Number> {
                 }
             }
         }
-        mathSet = temp.mathSet;
+        this.mathSet = temp.mathSet;
     }
 
     public void intersection(MathSet... ms) {
         for (int i = 0; i < ms.length; i++) {
-            this.intersection(ms[i]);
+            intersection(ms[i]);
         }
     }
 
@@ -270,6 +270,7 @@ public class MathSet<T extends Number> {
         for (int i = 0; i < numbers.length; i++) {
             numbers[i] = null;
         }
+        numbers = new Number[10];
     }
 
     public Number[] removeNull(MathSet ms) {
