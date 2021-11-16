@@ -27,6 +27,8 @@
         <module>hw_3_start_oop</module>
         <module>hw_5_collection</module>
         <module>MathSet</module>
+        <module>hw_4_logs_and_test</module>
+        <module>hw_6_exeption</module>
     </modules>
     <packaging>pom</packaging>
 
