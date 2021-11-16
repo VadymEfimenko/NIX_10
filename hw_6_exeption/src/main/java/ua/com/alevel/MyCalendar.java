@@ -259,11 +259,11 @@ public class MyCalendar {
         if (days <= monthDays()) {
             setDays(days);
         }
-        if (days > monthDays()){
+        if (days > monthDays()) {
             days = days - monthDays();
             addMonths(1);
             setDays(1);
-            addDays(days-1);
+            addDays(days - 1);
         }
     }
 
@@ -535,5 +535,4 @@ public class MyCalendar {
                 ", years=" + years +
                 '}';
     }
-
 }
