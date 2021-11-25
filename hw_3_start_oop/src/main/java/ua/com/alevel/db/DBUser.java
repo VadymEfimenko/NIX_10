@@ -32,10 +32,10 @@ public class DBUser {
         users[users.length - 1] = user;
     }
 
-    public String generateId() {
+    private static String generateId() {
         String id = UUID.randomUUID().toString();
         for (User user : users) {
-            if (user.getId().equals(id)) {
+            if (user != null && user.getId().equals(id)) {
                 return generateId();
             }
         }
