@@ -29,6 +29,8 @@
         <module>MathSet</module>
         <module>hw_4_logs_and_test</module>
         <module>hw_6_exeption</module>
+        <module>module_2</module>
+        <module>module_2_</module>
     </modules>
     <packaging>pom</packaging>
 
