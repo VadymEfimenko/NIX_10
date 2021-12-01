@@ -1,3 +1,5 @@
+package ua.com.alevel;
+
 import java.util.HashMap;
 
 public class City {

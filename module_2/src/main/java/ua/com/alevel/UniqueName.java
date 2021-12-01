@@ -1,3 +1,5 @@
+package ua.com.alevel;
+
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -13,7 +15,7 @@ public class UniqueName {
         String fileToString = FileUtils.readFileToString(file);
         String[] splitString = fileToString.split("\\R+|\\s+|\\d+");
         ArrayList<String> strings = new ArrayList<>(Arrays.stream(splitString).toList());
-        System.out.println("Second task. Names in file: " + strings);
+        System.out.println("Second task.");
         for (int i = 0; i < strings.size(); i++) {
             for (int j = i + 1; j < strings.size(); j++) {
                 if (strings.get(i).equals(strings.get(j))){
