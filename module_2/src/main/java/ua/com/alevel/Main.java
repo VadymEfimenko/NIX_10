@@ -9,7 +9,7 @@ public class Main {
             DatesFormat datesFormat = new DatesFormat();
             datesFormat.readToString();
             datesFormat.formatDateAndWrite();
-            System.out.println("First task. Dates in your file: " + datesFormat.dateString);
+            System.out.println("First task. Dates in your file : " + datesFormat.dateString);
             //Task 2
             UniqueName uniqueName = new UniqueName();
             uniqueName.readFile();
