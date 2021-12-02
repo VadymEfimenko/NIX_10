@@ -42,6 +42,4 @@ public class CityController {
             cityList.get(i).id = i+1;
         }
     }
-
-
 }
