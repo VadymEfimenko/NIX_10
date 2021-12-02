@@ -16,6 +16,8 @@ public class Main {
             //Task3
             CityController cityController = new CityController();
             cityController.readAndMakeListOfCities();
+            cityController.initializeCities();
+            cityController.setId();
         } catch (IOException e) {
             e.printStackTrace();
         }
