@@ -19,3 +19,14 @@ module_1 = 8
 
 hw_5 = 9
 hw_6 = 9
+
+ua/com/alevel/CityController.java:14
+без обид, но такие вещи не прощаются
+
+module_2 = 8
+
+ua/com/alevel/entity/Book.java:8
+ua/com/alevel/entity/Author.java:8
+такие тоже
+
+hw_4 = 9
