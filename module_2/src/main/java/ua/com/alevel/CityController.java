@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CityController {
 
-    File inputCities = new File("C:\\Users\\Admin\\IdeaProjects\\NIX_10\\module_2\\InputCities.txt");
+    File inputCities = new File("InputCities.txt");
     List<String> cities = new ArrayList<>();
     List<City> cityList = new ArrayList<>();
     List<String> citiesD;
