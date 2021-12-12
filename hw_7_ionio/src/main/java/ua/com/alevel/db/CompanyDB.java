@@ -13,20 +13,20 @@ public class CompanyDB {
 
     private final List<Company> companies;
     private static CompanyDB instance;
-    Gson gson =  new Gson();
+    Gson gson = new Gson();
 
-    private CompanyDB(){
+    private CompanyDB() {
         companies = new ArrayList<>();
     }
 
-    public static CompanyDB getInstance(){
-        if (instance == null){
+    public static CompanyDB getInstance() {
+        if (instance == null) {
             instance = new CompanyDB();
         }
         return instance;
     }
 
-    public void create(Company company){
+    public void create(Company company) {
         company.setId(GenerateIdUtil.generateId(companies));
         companies.add(company);
         String json = gson.toJson(companies);
@@ -39,7 +39,7 @@ public class CompanyDB {
         }
     }
 
-    public void update(Company company){
+    public void update(Company company) {
         Company current = findById(company.getId());
         current.setCompName(company.getCompName());
         current.setInvestors(company.getInvestors());
@@ -54,7 +54,7 @@ public class CompanyDB {
 
     }
 
-    public void delete(String id){
+    public void delete(String id) {
         companies.removeIf(company -> company.getId().equals(id));
         String json = gson.toJson(companies);
         try {
@@ -66,7 +66,7 @@ public class CompanyDB {
         }
     }
 
-    public Company findById(String id){
+    public Company findById(String id) {
         Company companyById = companies.stream()
                 .filter(company -> company.getId().equals(id))
                 .findFirst()
@@ -82,7 +82,7 @@ public class CompanyDB {
         return companyById;
     }
 
-    public void findAll(){
+    public void findAll() {
         String json = gson.toJson(companies);
         try {
             FileWriter writer = new FileWriter("allCompanies.json");
