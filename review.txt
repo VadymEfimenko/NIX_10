@@ -39,3 +39,5 @@ ua/com/alevel/entity/Company.java:8
 ua/com/alevel/db/InvestorCompanyDB.java:8 - зачем вообще этот класс?
 
 по злому ты реализовал - через третий json почему несделал?
+
+hw_7 = 8
