@@ -30,3 +30,14 @@ ua/com/alevel/entity/Author.java:8
 такие тоже
 
 hw_4 = 9
+
+ua/com/alevel/entity/Company.java:7
+ua/com/alevel/entity/Company.java:8
+
+как мы именуем имена переменных?
+
+ua/com/alevel/db/InvestorCompanyDB.java:8 - зачем вообще этот класс?
+
+по злому ты реализовал - через третий json почему несделал?
+
+hw_7 = 8
