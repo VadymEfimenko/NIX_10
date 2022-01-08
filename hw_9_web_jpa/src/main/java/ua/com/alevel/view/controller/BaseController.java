@@ -16,8 +16,6 @@ import java.util.Map;
 
 import static ua.com.alevel.util.WebRequestUtil.DEFAULT_ORDER_PARAM_VALUE;
 
-
-
 public abstract class BaseController {
 
     protected void showInfo(Model model, String message) {
@@ -182,9 +180,9 @@ public abstract class BaseController {
 
     public ModelAndView findAllRedirect(WebRequest request, ModelMap model, String redirectUrl) {
         Map<String, String[]> parameterMap = request.getParameterMap();
-            if (MapUtils.isNotEmpty(parameterMap)) {
-                parameterMap.forEach(model::addAttribute);
-            }
-            return new ModelAndView("redirect:/" + redirectUrl, model);
+        if (MapUtils.isNotEmpty(parameterMap)) {
+            parameterMap.forEach(model::addAttribute);
         }
+        return new ModelAndView("redirect:/" + redirectUrl, model);
+    }
 }

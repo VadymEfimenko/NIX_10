@@ -2,7 +2,10 @@ package ua.com.alevel.persistence.datatable;
 
 import ua.com.alevel.persistence.entity.BaseEntity;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DataTableResponse<ENTITY extends BaseEntity> {
 

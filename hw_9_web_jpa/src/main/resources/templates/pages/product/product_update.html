@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Product Update</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>Product Update</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/products/update}" th:object="${product}" method="post">
+                        <div class="form-group">
+                            <label for="price">price</label>
+                            <input type="number" th:required="required" class="form-control" id="price"
+                                   aria-describedby="price" placeholder="Enter product price" th:field="*{price}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
