@@ -54,7 +54,7 @@ public class Product extends BaseEntity {
     }
 
     public void removeCustomer(Customer customer){
-        customers.remove(customer);
         customer.getProducts().remove(this);
+        customers.remove(customer);
     }
 }

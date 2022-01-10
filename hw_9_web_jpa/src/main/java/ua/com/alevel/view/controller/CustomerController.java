@@ -19,14 +19,14 @@ public class CustomerController extends BaseController {
     private Long updateId = 0L;
     private final CustomerFacade customerFacade;
     private final ProductFacade productFacade;
-    private final BaseController.HeaderName[] columnNames;
+    private final HeaderName[] columnNames;
 
     {
         columnNames = new HeaderName[]{
                 new HeaderName("#", null, null),
                 new HeaderName("first name", "firstName", "firstName"),
-                new HeaderName("last name", "lastName", "last_name"),
-                new HeaderName("products", "productCount", "productCount"),
+                new HeaderName("last name", "secondName", "secondName"),
+                new HeaderName("products", null, null),
                 new HeaderName("details", null, null),
                 new HeaderName("update", null, null),
                 new HeaderName("delete", null, null)
