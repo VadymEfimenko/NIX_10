@@ -1,10 +1,10 @@
-package ua.com.alevel.persistence.dao;
+package ua.com.alevel.service;
 
 import ua.com.alevel.persistence.datatable.DataTableRequest;
 import ua.com.alevel.persistence.datatable.DataTableResponse;
 import ua.com.alevel.persistence.entity.BaseEntity;
 
-public interface BaseDao<ENTITY extends BaseEntity> {
+public interface BaseService <ENTITY extends BaseEntity> {
 
     void create(ENTITY entity);
 
@@ -15,6 +15,4 @@ public interface BaseDao<ENTITY extends BaseEntity> {
     ENTITY findById(Long id);
 
     DataTableResponse<ENTITY> findAll(DataTableRequest request);
-
-    long count();
 }

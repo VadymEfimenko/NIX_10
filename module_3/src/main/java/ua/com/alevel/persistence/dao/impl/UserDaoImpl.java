@@ -11,8 +11,12 @@ import ua.com.alevel.persistence.entity.User;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import javax.transaction.Transactional;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -39,18 +43,28 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public boolean existById(Long id) {
-        return entityManager.contains(findById(id));
-    }
-
-    @Override
     public User findById(Long id) {
         return entityManager.find(User.class, id);
     }
 
     @Override
     public DataTableResponse<User> findAll(DataTableRequest request) {
-        return null;
+        int page = (request.getCurrentPage() - 1) * request.getPageSize();
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+        Root<User> from = criteriaQuery.from(User.class);
+        if (request.getOrder().equals("desc")) {
+            criteriaQuery.orderBy(criteriaBuilder.desc(from.get(request.getSort())));
+        } else {
+            criteriaQuery.orderBy(criteriaBuilder.asc(from.get(request.getSort())));
+        }
+        List<User> users = entityManager.createQuery(criteriaQuery)
+                .setFirstResult(page)
+                .setMaxResults(request.getPageSize())
+                .getResultList();
+        DataTableResponse<User> dataTableResponse = new DataTableResponse<>();
+        dataTableResponse.setItems(users);
+        return dataTableResponse;
     }
 
     @Override

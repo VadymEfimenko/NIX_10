@@ -44,11 +44,6 @@ public class AccountDaoImpl implements AccountDao {
     }
 
     @Override
-    public boolean existById(Long id) {
-        return entityManager.contains(findById(id));
-    }
-
-    @Override
     public Account findById(Long id) {
         return entityManager.find(Account.class, id);
     }
