@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>New Transaction</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>Transaction</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/transactions/create}" th:object="${transaction}" method="post"
+                          enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="accountName">Sum</label>
+                            <input type="text" class="form-control" min="1" th:required="required" id="accountName"
+                                   aria-describedby="accountName" placeholder="Enter sum"
+                                   th:field="*{sum}">
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryName">Category Name</label>
+                            <input type="text" class="form-control" th:required="required" id="categoryName"
+                                   aria-describedby="categotyName" placeholder="Enter category name"
+                                   th:field="*{category}">
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>New Account</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>New Account</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/accounts/create}" th:object="${account}" method="post"
+                          enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="accountName">Account Name</label>
+                            <input type="text" class="form-control" th:required="required" id="accountName"
+                                   aria-describedby="accountName" placeholder="Enter account name"
+                                   th:field="*{name}">
+                        </div>
+                        <input type="hidden" th:field="*{userId}" id="departmentId" th:value="${userId}">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

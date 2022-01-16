@@ -1,17 +1,11 @@
-package ua.com.alevel.entity;
+package ua.com.alevel.dto.request;
 
-import javax.persistence.*;
+import ua.com.alevel.dto.RequestDto;
+import ua.com.alevel.entity.Account;
 
-@Entity
-@Table(name = "transactions")
-public class Transaction extends BaseEntity {
+public class TransactionRequestDto extends RequestDto {
 
-    @AttributeOverride(name = "id", column = @Column(name = "transaction_id"))
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "account_id")
     private Account account;
-
     private String category;
     private Long sum;
 

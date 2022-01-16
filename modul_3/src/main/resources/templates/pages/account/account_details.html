@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Account Details</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    Account Details
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Id</th>
+                            <td th:text="${account.getId()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Account Name</th>
+                            <td th:text="${account.getName()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Balance</th>
+                            <td th:text="${account.getBalance()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Created</th>
+                            <td th:text="${#calendars.format(account.getCreated(),'dd MMMM yyyy')}"></td>
+                        </tr>
+
+                        <tr>
+                            <th>User</th>
+                            <td>
+                                <a role="button" class="btn btn-link"
+                                   th:href="@{'/users/details/' + ${user.getId()}}"
+                                   th:text="${user.getName()}">details</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="card mt-2 mb-2">
+                        <div class="card-footer">
+                            <div class="force-to-bottom">
+                                <a type="button" class="btn btn-primary"
+                                   th:href="@{'/transactions/new/'+${account.getId()}}">Make Transaction</a>
+                                <a type="button" class="btn btn-danger"
+                                   th:href="@{'/accounts/history/'+${account.getId()}}">Create history of
+                                    operation</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>
