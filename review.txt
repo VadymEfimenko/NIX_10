@@ -42,4 +42,8 @@ ua/com/alevel/db/InvestorCompanyDB.java:8 - зачем вообще этот к�
 
 hw_7 = 8
 
+hw_8 = 9
+hw_9 = 9
+hw_10 = 9
+
 module_3 = 9
