@@ -7,7 +7,7 @@ import java.util.Date;
 public abstract class BaseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -59,5 +59,15 @@ public abstract class BaseEntity {
 
     public void setVisible(Boolean visible) {
         this.visible = visible;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseEntity{" +
+                "id=" + id +
+                ", created=" + created +
+                ", updated=" + updated +
+                ", visible=" + visible +
+                '}';
     }
 }

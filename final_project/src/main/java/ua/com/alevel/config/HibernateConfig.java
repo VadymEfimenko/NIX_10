@@ -15,7 +15,6 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories("ua.com.alevel.persistence.repository")
 public class HibernateConfig {
 
     @Value("${spring.datasource.url}")
@@ -74,6 +73,13 @@ public class HibernateConfig {
         return dataSource;
     }
 
+    @Bean
+    public HibernateTransactionManager transactionManager() {
+        HibernateTransactionManager manager = new HibernateTransactionManager();
+        manager.setSessionFactory(sessionFactoryBean().getObject());
+        return manager;
+    }
+
     @Bean(name="entityManagerFactory")
     public LocalSessionFactoryBean sessionFactoryBean() {
         LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
@@ -86,13 +92,6 @@ public class HibernateConfig {
             e.printStackTrace();
         }
         return sessionFactoryBean;
-    }
-
-    @Bean
-    public HibernateTransactionManager transactionManager() {
-        HibernateTransactionManager manager = new HibernateTransactionManager();
-        manager.setSessionFactory(sessionFactoryBean().getObject());
-        return manager;
     }
 
     private Properties hibernateProperties() {

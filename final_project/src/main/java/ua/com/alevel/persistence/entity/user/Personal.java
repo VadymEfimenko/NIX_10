@@ -15,9 +15,6 @@ import java.util.Date;
 })
 public class Personal extends User {
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "birth_day")
-    private Date birthDay;
 
     @Column(name = "first_name")
     private String firstName;
@@ -28,20 +25,9 @@ public class Personal extends User {
     @Transient
     private String fullName;
 
-    @Transient
-    private Integer age;
-
     public Personal() {
         super();
         setRoleType(RoleType.ROLE_PERSONAL);
-    }
-
-    public Date getBirthDay() {
-        return birthDay;
-    }
-
-    public void setBirthDay(Date birthDay) {
-        this.birthDay = birthDay;
     }
 
     public String getFirstName() {
@@ -66,13 +52,5 @@ public class Personal extends User {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 }

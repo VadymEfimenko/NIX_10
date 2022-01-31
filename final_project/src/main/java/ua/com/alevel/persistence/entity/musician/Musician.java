@@ -3,7 +3,10 @@ package ua.com.alevel.persistence.entity.musician;
 import ua.com.alevel.persistence.entity.BaseEntity;
 import ua.com.alevel.persistence.entity.release.Release;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,17 +14,13 @@ import java.util.Set;
 @Table(name = "musicians")
 public class Musician extends BaseEntity {
 
-    @Column(name = "first_name")
+    @Column(name = "nick_name")
     private String nickName;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "musician_release",
-            joinColumns = @JoinColumn(name = "musician_id"),
-            inverseJoinColumns = @JoinColumn(name = "release_id"))
+    @OneToMany(mappedBy = "musician")
     private Set<Release> releases;
 
-    public Musician(){
+    public Musician() {
         super();
         releases = new HashSet<>();
     }
@@ -40,5 +39,18 @@ public class Musician extends BaseEntity {
 
     public void setReleases(Set<Release> releases) {
         this.releases = releases;
+    }
+
+    public void addRelease(Release release) {
+        releases.add(release);
+        release.setMusician(this);
+    }
+
+    @Override
+    public String toString() {
+        return "Musician{" +
+                "nickName='" + nickName + '\'' +
+                ", releases=" + releases +
+                '}';
     }
 }

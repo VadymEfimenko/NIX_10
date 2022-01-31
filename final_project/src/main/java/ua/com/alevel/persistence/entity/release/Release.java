@@ -3,6 +3,8 @@ package ua.com.alevel.persistence.entity.release;
 import ua.com.alevel.persistence.entity.BaseEntity;
 import ua.com.alevel.persistence.entity.label.Label;
 import ua.com.alevel.persistence.entity.musician.Musician;
+import ua.com.alevel.persistence.entity.user.Order;
+import ua.com.alevel.persistence.listener.ReleaseVisibleGenerationListener;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -12,8 +14,12 @@ import java.util.Set;
 @Table(name = "releases")
 public class Release extends BaseEntity {
 
+    @AttributeOverride(name = "id", column = @Column(name = "release_id"))
+
     @Column(name = "release_name")
     private String releaseName;
+
+    private Integer price;
 
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -25,15 +31,61 @@ public class Release extends BaseEntity {
 
     private String genre;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private Label label;
+    private Integer quantity;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "releases")
-    private Set<Musician> musicians;
+    @ManyToMany(cascade = {
+            CascadeType.MERGE,
+            CascadeType.REMOVE
+    })
+    @JoinTable(
+            name = "release_order",
+            joinColumns = @JoinColumn(name = "release_id"),
+            inverseJoinColumns = @JoinColumn(name = "order_id"))
+    private Set<Order> orders;
 
-    public Release(){
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    @ManyToMany(mappedBy = "releases", cascade = {
+            CascadeType.PERSIST
+    })
+    private Set<Label> labels;
+
+    @ManyToOne
+    private Musician musician;
+
+    public Release() {
         super();
-        musicians = new HashSet<>();
+        labels = new HashSet<>();
+        orders = new HashSet<>();
+    }
+
+    public Set<Label> getLabels() {
+        return labels;
+    }
+
+    @PreRemove
+    private void removeRelease() {
+        musician.getReleases().remove(this);
+        this.setMusician(null);
+
+    }
+
+    public void setLabels(Set<Label> labels) {
+        this.labels = labels;
+    }
+
+    public Musician getMusician() {
+        return musician;
+    }
+
+    public void setMusician(Musician musician) {
+        this.musician = musician;
     }
 
     public String getReleaseName() {
@@ -76,19 +128,34 @@ public class Release extends BaseEntity {
         this.genre = genre;
     }
 
-    public Label getLabel() {
-        return label;
+    public Integer getPrice() {
+        return price;
     }
 
-    public void setLabel(Label label) {
-        this.label = label;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
-    public Set<Musician> getMusicians() {
-        return musicians;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setMusicians(Set<Musician> musicians) {
-        this.musicians = musicians;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    @Override
+    public String toString() {
+        return "Release{" +
+                "releaseName='" + releaseName + '\'' +
+                ", price=" + price +
+                ", description='" + description + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", year=" + year +
+                ", genre='" + genre + '\'' +
+                ", quantity=" + quantity +
+                ", labels=" + labels +
+                ", musician=" + musician +
+                '}';
     }
 }

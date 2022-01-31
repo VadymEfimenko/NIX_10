@@ -8,6 +8,7 @@ import javax.persistence.PostPersist;
 import javax.persistence.PostUpdate;
 
 public class FullNameGenerationListener {
+
     @PostLoad
     @PostPersist
     @PostUpdate
