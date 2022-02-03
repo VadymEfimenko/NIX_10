@@ -61,7 +61,7 @@ public class PLPController {
 
     @GetMapping("/{id}")
     public String redirectToNewReleasePage(@PathVariable Long id, Model model) {
-        model.addAttribute("release", releaseFacade.findById(id));
+        model.addAttribute("release", releaseFacade.findReleaseById(id));
         model.addAttribute("distributors", releaseFacade.findAllDistributorsByReleaseId(id));
         return "pages/open/release_details";
     }
