@@ -29,9 +29,9 @@
                                    aria-describedby="shopAddress" placeholder="Введите адрес"
                                    th:field="*{website}" th:value="${distributor.getWebsite()}">
                             <label for="openTime">Тип Носителя</label>
-                            <select id="openTime" th:field="*{digitalMedia}" th:value="${distributor.getDigitalMedia()()}">
+                            <select id="openTime" th:field="*{digitalMedia}" th:value="${distributor.getDigitalMedia()}">
                                 <option th:each="m : ${media}"
-                                        th:value="${m.getName()()}" th:text="${m.getName()}">
+                                        th:value="${m.getName()}" th:text="${m.getName()}">
                                 </option>
                             </select>
                             <label for="closedTime">Формат</label>

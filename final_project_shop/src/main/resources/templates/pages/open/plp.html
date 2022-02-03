@@ -309,14 +309,14 @@
             <div class="col d-flex align-items-stretch" th:each="release : ${pageData.getItems()}">
                 <figure class="card card-product-grid">
                     <a th:href="@{'releases/' + ${release.getId()}}" class="img-wrap" data-abc="true">
-                        <img th:src="${release.getImageUrl()()}"> </a>
+                        <img th:src="${release.getImageUrl()}"> </a>
                     <figcaption class="info-wrap">
                         <div class="row">
                             <div class="col-md-9">
                                 <span class="title" data-abc="true" th:text="${release.getName()}">name</span>
                                 <a>
                                    <span class="rated"
-                                         th:text="${release.getMusician().getName()()}">name</span>
+                                         th:text="${release.getMusician().getName()}">name</span>
                                 </a>
                             </div>
                         </div>

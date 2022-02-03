@@ -43,10 +43,10 @@ function submitRequest(sort, order, page, size) {
             input.setAttribute("name", "size");
             input.setAttribute("value", size);
             personalSearch.appendChild(input);
-            if(url.includes('brand')){
+            if(url.includes('musician')){
                 input = document.createElement("input");
                 input.setAttribute("type", "hidden");
-                input.setAttribute("name", "brand");
+                input.setAttribute("name", "musician");
                 input.setAttribute("value", url.substring(url.lastIndexOf('=')+1).replaceAll(',','-'));
                 personalSearch.appendChild(input);
             }

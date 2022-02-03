@@ -3,7 +3,7 @@ let newUrlSort;
 let baseUrlSort = window.location.href;
 for (let button of elementListSort) {
     $(button).on('click', function () {
-        if ( !baseUrlSort.includes('brand')){
+        if ( !baseUrlSort.includes('musician')){
             if (button.id==='createdUp'){
                 newUrlSort= '?sort=created&order=asc&page=1&size='+ document.getElementById('hiddenSort').value;
             }
@@ -14,7 +14,7 @@ for (let button of elementListSort) {
                 newUrlSort= '?sort=price&order=desc&page=1&size='+ document.getElementById('hiddenSort').value;
             }
         }
-        else if (baseUrlSort.includes("brand")){
+        else if (baseUrlSort.includes("musician")){
             let index = baseUrlSort.lastIndexOf('&');
             let substr = baseUrlSort.substring(index,baseUrlSort.length);
             if (button.id==='createdUp'){

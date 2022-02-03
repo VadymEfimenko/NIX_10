@@ -17,11 +17,11 @@ for (let i = 0; i < elementList.length; i += 1) {
                 sessionStorage.setItem(i + '', '1');
                 return
             }
-            if (baseUrl.includes('brand=')) {
+            if (baseUrl.includes('musician=')) {
                 newUrl = baseUrl + ',' + elementList[i].value;
                 history.replaceState(null, null, newUrl);
             } else {
-                newUrl = baseUrl + '&brand=' + elementList[i].value;
+                newUrl = baseUrl + '&musician=' + elementList[i].value;
                 history.replaceState(null, null, newUrl);
             }
             sessionStorage.setItem(i + '', '1');
