@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin_layout}">
+<head>
+  <meta charset="utf-8">
+  <title>Детали</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Детали
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tr>
+              <th>Id</th>
+              <td th:text="${musician.getId()}"></td>
+            </tr>
+            <tr>
+              <th>Название</th>
+              <td th:text="${musician.getName()}"></td>
+            </tr>
+            <tr>
+              <th>Тип Музыканта</th>
+              <td th:text="${musician.getMusicianGroup()}"></td>
+            </tr>
+            <tr>
+              <th>Всего Релизов</th>
+              <td th:text="${musician.getReleasesCount()}"></td>
+            </tr>
+            <tr>
+              <th>Создан</th>
+              <td th:text="${#calendars.format(musician.getCreated(),'dd-M-yyyy hh:mm:ss')}"></td>
+            </tr>
+            <tr>
+              <th>Обновлен</th>
+              <td th:text="${#calendars.format(musician.getUpdated(),'dd-M-yyyy hh:mm:ss')}"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Редактировать продукт</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>Редактировать релиз</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/admin/releases/update}" th:object="${release}" method="post">
+                        <div class="form-group">
+                            <input type="hidden" th:value="${id}" th:name="'id'">
+                            <label for="name">Редактировать название</label>
+                            <input type="text" class="form-control" id="name"
+                                   aria-describedby="name" placeholder="Введите название" th:field="*{releaseName}" th:value="${release.getReleaseName()}">
+                            <label for="price">Редактировать цену</label>
+                            <input type="number" class="form-control" min="1" id="price"
+                                   aria-describedby="price" placeholder="Введите цену" th:field="*{price}" th:value="${release.getPrice()}">
+                            <label for="amount">Редактировать количество в наличии</label>
+                            <input type="number" class="form-control" min="0" id="amount"
+                                   aria-describedby="amount" placeholder="Введите количество" th:field="*{quantity}" th:value="${release.getQuantity()}">
+                            <label for="description">Редактировать описание</label>
+                            <input type="text" class="form-control" id="description"
+                                   aria-describedby="description" placeholder="Введите описание" th:field="*{description}" th:value="${release.getDescription()}">
+                            <label for="image">Редактировать изображение</label>
+                            <input type="text" class="form-control" id="image"
+                                   aria-describedby="image" placeholder="Введите ссылку на изображение" th:field="*{imageUrl}" th:value="${release.getImageUrl()}">
+                            <div class="form-group">
+                                <label for="brandId">Редактировать марку</label>
+                                <select id="brandId" th:field="*{musicianId}" th:value="${release.getMusicianId()}">
+                                    <option  th:each="musician : ${musicians}"
+                                             th:value="${musician.getId()}" th:text="${musician.getName()}" >
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="category">Редактировать категорию</label>
+                                <select id="category" th:field="*{releaseType}" th:value="${release.getReleaseType()}">
+                                    <option th:required="required" th:each="releaseType : ${types}"
+                                            th:value="${releaseType}" th:text="${releaseType.getName()}">
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Подтвердить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

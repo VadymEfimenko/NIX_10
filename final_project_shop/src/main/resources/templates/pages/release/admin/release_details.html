@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin_layout}">
+<head>
+  <meta charset="utf-8">
+  <title>Детали</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card mb-2 mt-2">
+        <div class="card-header">
+          Детали
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <tr>
+              <th>Id</th>
+              <td th:text="${release.getId()}"></td>
+            </tr>
+            <tr>
+              <th>Название</th>
+              <td th:text="${release.getName()}"></td>
+            </tr>
+            <tr>
+              <th>Цена</th>
+              <td th:text="${release.getPrice()}"></td>
+            </tr>
+            <tr>
+              <th>Описание</th>
+              <td th:text="${release.getDescription()}"></td>
+            </tr>
+            <tr>
+              <th>Тип Релиза</th>
+              <td th:text="${release.getReleaseType().getName()}"></td>
+            </tr>
+            <tr>
+              <th>Количество</th>
+              <td th:text="${release.getQuantity()}"></td>
+            </tr>
+            <tr>
+              <th>Музыкант</th>
+              <td>
+                <a role="button" class="btn btn-link"
+                   th:href="@{'/admin/musicians/details/' + ${release.getMusician().getId()}}"
+                   th:text="${release.getMusician().getName()}">details</a>
+              </td>
+            </tr>
+            <tr>
+              <th>Создан</th>
+              <td th:text="${#calendars.format(release.getCreated(),'dd-M-yyyy hh:mm:ss')}"></td>
+            </tr>
+            <tr>
+              <th>Обновлен</th>
+              <td th:text="${#calendars.format(release.getUpdated(),'dd-M-yyyy hh:mm:ss')}"></td>
+            </tr>
+            <tr>
+              <th>Дистрибуторы</th>
+              <td>
+                <table>
+                  <tr th:each="distributor : ${distributors}">
+                    <td>
+                      <a role="button" class="btn btn-link"
+                         th:href="@{'/admin/distributors/details/' + ${distributor.getKey()}}"
+                         th:text="${distributor.getValue()}">details</a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

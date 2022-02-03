@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin_layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Детали</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    Детали
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/admin/orders/update}" th:object="${newOrder}" method="post">
+                        <input type="hidden" th:value="${id}" th:name="'id'">
+                        <table class="table table-hover">
+                        <tr>
+                            <th>Id</th>
+                            <td th:text="${order.getId()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Дистрибьютор</th>
+                            <td th:text="${order.getDistributorName()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Пользователь</th>
+                            <td th:text="${order.getUserEmail()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Создан</th>
+                            <td th:text="${#calendars.format(order.getCreated(),'dd-M-yyyy hh:mm:ss')}"></td>
+                        </tr>
+                        <tr>
+                            <th>Обновлен</th>
+                            <td th:text="${#calendars.format(order.getUpdated(),'dd-M-yyyy hh:mm:ss')}"></td>
+                        </tr>
+                        <tr>
+                            <div class="form-group">
+                                <label for="status">Статус заказа</label>
+                                <select id="status" th:field="*{status}">
+                                    <option th:value="${order.getStatus()}" th:text="${order.getStatus().getStatus()}"></option>
+                                    <option  th:each="status : ${status}"
+                                             th:value="${status}" th:text="${status.getStatus()}" >
+                                    </option>
+                                </select>
+                            </div>
+                        </tr>
+                    </table>
+                        <button type="submit" class="btn btn-primary">Подтвердить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

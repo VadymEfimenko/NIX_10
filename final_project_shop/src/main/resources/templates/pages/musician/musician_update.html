@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="utf-8">
+  <title>Редактировать музыканта</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card mt-2">
+        <div class="card-header">
+          <h4>Редактировать музыканта</h4>
+        </div>
+        <div class="card-body">
+          <form action="#" th:action="@{/admin/musicians/update}" th:object="${musician}" method="post"
+                enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="name">Редактировать название</label>
+              <input type="text" class="form-control" id="name"
+                     aria-describedby="name" placeholder="Введите название" th:field="*{name}">
+            </div>
+            <div class="form-group">
+              <label for="country">Редактировать тип</label>
+              <select id="country" th:field="*{musicianGroup}">
+                <option th:value="${musician.getMusicianGroup()}" th:text="${musician.getMusicianGroup().getName()}">
+                </option>
+                <option  th:each="group : ${groups}"
+                         th:value="${group}" th:text="${group.getName()}">
+                </option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

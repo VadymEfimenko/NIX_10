@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/admin_layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Детали</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    Детали
+                </div>
+                <div class="card-body">
+                        <input type="hidden" th:value="${id}" th:name="'id'">
+                        <table class="table table-hover">
+                        <tr>
+                            <th>Id</th>
+                            <td th:text="${user.getId()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Имя</th>
+                            <td th:text="${user.getFullName()}"></td>
+                        </tr>
+                            <tr>
+                            <th>Почта</th>
+                            <td th:text="${user.getEmail()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Создан</th>
+                            <td th:text="${#calendars.format(user.getCreated(),'dd-M-yyyy hh:mm:ss')}"></td>
+                        </tr>
+                        <tr>
+                            <th>Обновлен</th>
+                            <td th:text="${#calendars.format(user.getUpdated(),'dd-M-yyyy hh:mm:ss')}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

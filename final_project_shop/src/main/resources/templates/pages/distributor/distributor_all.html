@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/data_table}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<head>
+  <meta charset="UTF-8">
+  <title>Дистрибьюторы</title>
+</head>
+<body>
+
+<div layout:fragment="data_table_content">
+
+  <tr th:each="distributor,iter : ${pageData.getItems()}">
+    <td th:text="${iter.count}"></td>
+    <td th:text="${distributor.getName()}"></td>
+    <td th:text="${distributor.getWebsite()}"></td>
+    <td th:text="${distributor.getReleaseCount()}"></td>
+    <td>
+      <a th:href="@{'/admin/distributors/details/' + ${distributor.getId()}}" type="button" class="btn btn-info">Подробнее</a>
+    </td>
+    <td>
+      <a th:href="@{'/admin/distributors/update/' + ${distributor.getId()}}" type="button" class="btn btn-primary">Редактировать</a>
+    </td>
+    <td>
+      <a th:href="@{'/admin/distributors/delete/' + ${distributor.getId()}}" type="button" class="btn btn-danger">Удалить</a>
+    </td>
+  </tr>
+
+</div>
+
+</body>
+</html>

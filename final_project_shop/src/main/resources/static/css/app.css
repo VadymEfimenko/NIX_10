@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html, body {
+    background: url('https://cdn.pixabay.com/photo/2021/01/28/19/37/vinyl-record-5958903_960_720.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100%;
+    font-family: 'Numans', sans-serif;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+a.nav-item.nav-link {
+    color: #008080;
+    background-color: #800000;
+    border-radius: 0.4rem
+}
+
+.navbar{
+    border-radius: 0.3rem
+}
+
+.sort {
+    cursor: pointer;
+    margin-right: 2em;
+}

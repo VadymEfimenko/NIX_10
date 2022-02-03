@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/data_table}">
+<head>
+    <meta charset="utf-8">
+    <title>Музыканты</title>
+</head>
+<body>
+
+<div layout:fragment="data_table_content">
+
+    <tr th:each="musician,iter : ${pageData.getItems()}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${musician.getName()}"></td>
+        <td th:text="${musician.getMusicianGroup()}"></td>
+        <td th:text="${musician.getReleasesCount()}"></td>
+        <td>
+            <a th:href="@{'/admin/musicians/details/' + ${musician.getId()}}" type="button" class="btn btn-info">Подробнее</a>
+        </td>
+        <td>
+            <a th:href="@{'/admin/musicians/update/' + ${musician.getId()}}" type="button" class="btn btn-primary">Редактировать</a>
+        </td>
+        <td>
+            <a th:href="@{'/admin/musicians/delete/' + ${musician.getId()}}" type="button" class="btn btn-danger">Удалить</a>
+        </td>
+    </tr>
+
+</div>
+
+</body>
+</html>

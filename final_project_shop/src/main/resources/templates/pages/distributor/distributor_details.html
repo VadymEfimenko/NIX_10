@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Дистрибьютор</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    Distributor Details
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Id</th>
+                            <td th:text="${distributor.getId()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Сайт</th>
+                            <td th:text="${distributor.getWebsite()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Название</th>
+                            <td th:text="${distributor.getName()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Создан</th>
+                            <td th:text="${#calendars.format(distributor.getCreated(),'dd MMMM yyyy')}"></td>
+                        </tr>
+                        <tr>
+                            <th>Обновлен</th>
+                            <td th:text="${#calendars.format(distributor.getUpdated(),'dd MMMM yyyy')}"></td>
+                        </tr>
+                        <tr>
+                            <th>Носители</th>
+                            <td th:text="${distributor.getDigitalMedia()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Формат Записи</th>
+                            <td th:text="${distributor.getFormat()()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Все Релизы</th>
+                            <td>
+                                <ul th:each="release : ${releases}">
+                                    <li>
+                                        <a role="button" class="btn btn-link"
+                                           th:href="@{'/admin/releases/details/' + ${release.getKey()}}"
+                                           th:text="${release.getValue()}">details</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

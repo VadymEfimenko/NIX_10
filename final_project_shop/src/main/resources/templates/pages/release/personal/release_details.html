@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/open_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        a {
+            text-decoration: none !important
+        }
+
+        .fixed-container {
+            justify-content:stretch;
+            display: flex;
+            box-sizing: border-box;
+            width: 100%;
+            /*min-width: 1200px;*/
+        }
+
+        .card-product-list,
+        .card-product-grid {
+            margin-bottom: 0
+        }
+
+        .card {
+            position: relative;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            margin-bottom: 0
+        }
+
+
+        .card-product-grid .img-wrap {
+            /*border-radius: 0.2rem 0.2rem 0 0;*/
+            width: 80%;
+            height: 400px
+        }
+
+        .card .img-wrap {
+            overflow: hidden
+        }
+
+        .card-lg .img-wrap {
+            height: 280px
+        }
+
+        .card-product-grid .img-wrap {
+            border-radius: 0.2rem 0.2rem 0 0;
+            height: 350px;
+            padding: 30px
+        }
+
+        [class*='card-product'] .img-wrap img {
+            height: 100%;
+            max-width: 100%;
+            width: auto;
+            display: inline-block;
+            -o-object-fit: cover;
+            object-fit: cover
+        }
+
+        .img-wrap {
+            width: 40%;
+            margin-top: 25px;
+            margin-left: 80px;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .card-product-grid .info-wrap {
+            /*height: 23%;*/
+            overflow: hidden;
+            padding: 18px 20px
+        }
+
+        [class*='card-product'] a.title {
+            color: #212529;
+            font-size: 34px;
+            margin: 25px 20px 20px;
+            text-align: center;
+            display: inline-block
+        }
+
+        .left {
+            width: 50% !important;
+            float: left;
+            margin-top: 25px;
+            border-top-left-radius:23px;
+        }
+
+        .right {
+            width: 50% !important;
+            float: right;
+            border-top-right-radius: 23px;
+            margin-top: 25px
+        }
+        .center {
+            margin-bottom:25px ;
+            width: 100% !important;
+            border-bottom-right-radius: 23px;
+            border-bottom-left-radius: 23px;
+        }
+
+        .rating-stars li.stars-active {
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden
+        }
+
+        .rating-stars li {
+            display: block;
+            text-overflow: clip;
+            white-space: nowrap;
+            z-index: 1
+        }
+
+        .card-product-grid .bottom-wrap {
+            text-align: center;
+            padding: 25px;
+            /*border-top: 1px solid #e4e4e4*/
+        }
+        .caption{
+            margin-left: 60px;
+            font-family: "Arial Black",sans-serif;
+            font-size: 22px;
+        }
+
+        .shops {
+            padding-left: 25px;
+            text-align: left;
+            font-size: 20px;
+            font-family: Arial;
+        }
+
+        .rated {
+            font-size: 10px;
+            color: #b3b4b6
+        }
+
+        .price {
+            font-size: 28px;
+            color: #360516;
+        }
+        .address{
+            padding-right: 30px;
+            padding-bottom: 15px;
+            text-align: right;
+            font-size: 18px;
+            font-family: Arial;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 600;
+            height: 50px;
+            color: #343a40;
+            text-align: center;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: transparent;
+            border: 1px solid transparent;
+            padding: 0.45rem 0.85rem;
+            font-size: 20px;
+            line-height: 1.5;
+            border-radius: 0.2rem
+        }
+
+        .btn-success {
+            align-self: center;
+            color: #fff;
+            background-color: #5c0b0b;
+            border-color: #864100
+        }
+
+        .description {
+            margin-left: 40px;
+            margin-right: 40px;
+            font-family: "Calibri";
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #212529;
+        }
+    </style>
+</head>
+<body>
+<div layout:fragment="open_content">
+    <div class="fixed-container">
+        <div class="card card-product-grid left">
+            <a class="img-wrap" data-abc="true">
+                <img th:src="${release.getImage()}"> </a>
+        </div>
+
+        <div class="card card-product-grid right">
+            <a href="#" class="title" data-abc="true" th:text="${release.getName()}">name</a>
+            <div class="bottom-wrap">
+                <a th:href="@{'buy/' + ${release.getId()}}">
+                    <button type="button" class="btn btn-success float-right" data-abc="true"
+                            th:disabled="${!release.getVisible()}">
+                        добавить в корзину 🛒</button>
+                </a>
+                <span class="price" th:text="${'₴' + release.getPrice()}">₴0,0</span>
+            </div>
+            <p class="caption">Дистрибьюторы</p>
+            <div th:each="distributor : ${release.getDistributors()}">
+                <span class="shops" th:text="${distributor.getName()}">distributorName</span>
+                <div class="address">
+                    <span class="address" th:text="${distributor.getDigitalMedia()+' Носитель '+distributor.getFormat()+' формат '}">shopName</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card card-product-grid center">
+        <p class="caption">Описание:</p>
+        <span class="description" th:text="${release.getDescription()}">description</span>
+        <p class="caption">Характеристики:</p>
+        <a class="description"
+           th:text="${'Музыкант : '+release.getMusician().getName()}">name</a>
+        <span class="description" th:text="${'Тип релиза : ' + release.getReleaseType().getName()}">description</span>
+    </div>
+</div>
+</body>
+</html>

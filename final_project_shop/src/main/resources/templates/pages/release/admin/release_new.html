@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Внести новый релиз</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>Новый Релиз</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/admin/releases/create}" th:object="${release}" method="post"
+                          enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="productName">Название</label>
+                            <input type="text" class="form-control" th:required="required" id="productName"
+                                   aria-describedby="productName" placeholder="Введите название"
+                                   th:field="*{releaseName}">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Описание</label>
+                            <input type="text" class="form-control" id="description" aria-describedby="description"
+                                   placeholder="Введите описание" th:required="required" th:field="*{description}">
+                        </div>
+                        <div class="form-group">
+                            <label for="img">Ссылка на картинку</label>
+                            <input type="url" class="form-control" id="img" aria-describedby="img"
+                                   placeholder="Введите ссылку" th:required="required" th:field="*{imageUrl}">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Введите количество в наличии</label>
+                            <input type="number" class="form-control" min="0" th:required="required" id="amount"
+                                   aria-describedby="amount" placeholder="Введите количество" th:field="*{quantity}">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Цена</label>
+                            <input type="number" class="form-control" min="1" th:required="required" id="price"
+                                   aria-describedby="price" placeholder="Введите цену" th:field="*{price}">
+                        </div>
+                        <div class="form-group">
+                            <label for="shopsId">Выберите магазины</label>
+                            <select id="shopsId" multiple="multiple" th:field="*{distributorsId}">
+                                <option th:required="required" th:each="distiributor : ${distributors}"
+                                        th:value="${distiributor.getId()}" th:text="${distiributor.getName()}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="brandId">Выберите марку</label>
+                            <select id="brandId" th:field="*{musicianId}">
+                                <option th:required="required" th:each="musician : ${musicians}"
+                                        th:value="${musician.getId()}" th:text="${musician.getName()}">
+                                </option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="category">Выберите категорию</label>
+                            <select id="category" th:field="*{releaseType}">
+                                <option th:required="required" th:each="type : ${releaseType}"
+                                        th:value="${type}" th:text="${type.getName()}">
+                                </option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Подтвердить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/auth_layout}" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.ultraq.net.nz/thymeleaf/layout ">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль</title>
+</head>
+<body>
+<div layout:fragment="auth_content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    Детали
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Имя</th>
+                            <td th:text="${user.getFullName()}"></td>
+                        </tr>
+                        <tr>
+                            <th>Почта</th>
+                            <td th:text="${user.getEmail()}"></td>
+                        <tr>
+                            <th>Создан</th>
+                            <td th:text="${#calendars.format(user.getCreated(),'dd-M-yyyy hh:mm:ss')}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-2 mt-2">
+                <div class="card-header">
+                    Заказы
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <tr th:each="order,iter : ${orders}">
+                            <td th:text="${iter.count}"></td>
+                            <td th:text="${order.getDistributor().getName()}"></td>
+                            <td th:text="${order.getDistributor().getFormat()}"></td>
+                            <td th:text="${order.getDistributor().getDigitalMedia()}"></td>
+                            <td th:text="${order.getOrderStatus().getStatus()}"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

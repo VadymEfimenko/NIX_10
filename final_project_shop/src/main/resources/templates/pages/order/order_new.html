@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Создать новый заказ</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>Новый заказ</h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <tr>
+                            <th>Пользователь</th>
+                            <td th:text="${user.getName()}"></td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <tr th:each="release,iter : ${releases}">
+                            <td th:text="${iter.count}"></td>
+                            <td th:text="${release.getName()}"></td>
+                            <td th:text="${release.getMusician().getName()}"></td>
+                            <td th:text="${release.getPrice()}"></td>
+                            <td>
+                                <a th:href="@{'/personal/cart/delete/' + ${release.getId()}}" type="button" class="btn btn-danger">Удалить</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="card-body">
+                    <form action="#" th:action="@{/personal/create}" th:object="${order}" method="post"
+                          enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="brandId">Выберите магазин</label>
+                            <select id="brandId" th:field="*{distributorId}">
+                                <option th:required="required" th:each="distributor : ${distributors}"
+                                        th:value="${distributor.getId()}" th:text="${distributor.getName()}">
+                                </option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Подтвердить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

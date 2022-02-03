@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/personal_layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        a {
+            text-decoration: none !important
+        }
+
+        .fixed-container {
+            min-width: 1200px;
+            align-self: center
+        }
+
+        .card-product-list,
+        .card-product-grid {
+            margin-bottom: 0
+        }
+
+        .card {
+            width: 400px !important;
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 23px;
+            margin-top: 20px
+        }
+
+        .box {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 9px;
+            margin-top: 50px;
+            margin-left: 0;
+            margin-right: 50px;
+            width: 20%;
+            height: 20%;
+            padding-left: 20px;
+            text-align: left;
+            font-size: 20px;
+        }
+
+        .up {
+            margin-top: 20px;
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 9px;
+            height: auto;
+            padding: 15px;
+        }
+
+
+        .card-product-grid:hover {
+            -webkit-box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
+            box-shadow: 0 4px 15px rgba(153, 153, 153, 0.3);
+            -webkit-transition: .3s;
+            transition: .3s
+        }
+
+        .card-product-grid .img-wrap {
+            border-radius: 0.2rem 0.2rem 0 0;
+            height: 220px
+        }
+
+        .card .img-wrap {
+            overflow: hidden
+        }
+
+        .card-lg .img-wrap {
+            height: 280px
+        }
+
+        .card-product-grid .img-wrap {
+            border-radius: 0.2rem 0.2rem 0 0;
+            height: 275px;
+            padding: 16px
+        }
+
+        [class*='card-product'] .img-wrap img {
+            height: 100%;
+            max-width: 100%;
+            width: auto;
+            display: inline-block;
+            -o-object-fit: cover;
+            object-fit: cover
+        }
+
+        .img-wrap {
+            text-align: center;
+            display: block
+        }
+
+        .card-product-grid .info-wrap {
+            height: 23%;
+            overflow: hidden;
+            padding: 18px 20px
+        }
+
+        .w {
+            min-width: 1200px;
+            align-self: center
+        }
+
+        .al-center {
+            align-self: center;
+        }
+
+        .al-right {
+            float: right;
+            font-size: 16px;
+            color: #e4e4e4;
+            font-weight: bold;
+        }
+
+        [class*='card-product'] a.title {
+            color: #212529;
+            display: block
+        }
+
+        .rating-stars {
+            display: inline-block;
+            vertical-align: middle;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            position: relative;
+            white-space: nowrap;
+            clear: both
+        }
+
+        .rating-stars li.stars-active {
+            z-index: 2;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden
+        }
+
+        .rating-stars li {
+            display: block;
+            text-overflow: clip;
+            white-space: nowrap;
+            z-index: 1
+        }
+
+        .card-product-grid .bottom-wrap {
+            padding: 18px;
+            border-top: 1px solid #e4e4e4
+        }
+
+        .bottom-wrap-payment {
+            /*margin-bottom:15%;*/
+            padding: 0px;
+            border-top: 1px solid #e4e4e4
+        }
+
+        .rated {
+            font-size: 10px;
+            color: #b3b4b6
+        }
+
+        .price {
+            font-size: 16px;
+            color: #4e5567;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 600;
+            color: #343a40;
+            text-align: center;
+            vertical-align: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: transparent;
+            border: 1px solid transparent;
+            padding: 15px 15px 15px 15px;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.2rem
+        }
+
+        .sort {
+            color: #fff;
+            float: right;
+        }
+
+        .page {
+            color: #fff;
+            float: left;
+        }
+
+        .box-container {
+            margin-bottom: 20px;
+            margin-top: 20px;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #3167eb;
+            border-color: #3167eb
+        }
+
+        .btn-confirm {
+            display: inline-block;
+            font-weight: 600;
+            text-align: center;
+            align-self: center;
+            border: 1px solid transparent;
+            padding: 10px;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.2rem
+        }
+
+        .form-check-input {
+            transform: scale(1.5);
+        }
+
+        .dropdown {
+            display: inline-block;
+        }
+
+    </style>
+</head>
+<body>
+<div layout:fragment="personal_content">
+
+    <div class="container up">
+        <div class="dropdown">
+            <button type="button" class="btn-confirm btn-success dropdown-toggle sort" data-abc="true"
+                    data-toggle="dropdown">
+                Сортировать по
+            </button>
+            <div class="dropdown-menu">
+                <input id="hiddenSort" type="hidden" th:value="${pageData.getPageSize()}">
+                <a class="dropdown-item order" id="createdUp">По новизне</a>
+                <a class="dropdown-item order" id="priceDown">По убыванию цены</a>
+                <a class="dropdown-item order" id="priceUp">По возрастанию цены</a>
+            </div>
+            <div class="dropdown">
+                <button type="button" class="btn-confirm btn-success dropdown-toggle page" data-abc="true"
+                        data-toggle="dropdown">
+                    Показать на странице
+                </button>
+                <div class="dropdown-menu">
+                    <section th:each="size : ${pageData.getPageSizeItems()}">
+                        <a class="dropdown-item" href="#"
+                           th:onclick="|showOnPage(${size})|"
+                           th:text="${size}">@size</a>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container fixed-container d-flex justify-content-center">
+        <div class="box">
+            <div class="box-container">
+                <div class="form-check" th:each="musician : ${musicians}">
+                    <input class="form-check-input" type="checkbox" id="flexCheckDefault" th:value="${musician.getName()}">
+                    <input id="hidden" type="hidden"
+                           th:value="'?sort='+ ${pageData.getSort()}+'&order='+ ${pageData.getOrder()} +'&page=1&size=' + ${pageData.getPageSize()}">
+                    <label class="form-check-label" for="flexCheckDefault" th:text="${musician.getName()}">
+                        Musician
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4 mb-4">
+            <div class="col d-flex align-items-stretch" th:each="release : ${releases}">
+                <figure class="card card-product-grid">
+                    <a th:href="@{'personal/' + ${release.getId()}}" class="img-wrap" data-abc="true">
+                        <img th:src="${release.getImageUrl()}"> </a>
+                    <figcaption class="info-wrap">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <span class="title" data-abc="true" th:text="${release.getName()}">name</span>
+                                <a>
+                                    <span class="rated"
+                                          th:text="${release.getMusician().getName()}">name</span>
+                                </a>
+                            </div>
+                        </div>
+                    </figcaption>
+                    <div class="bottom-wrap-payment">
+                        <figcaption class="info-wrap">
+                            <div class="row">
+                                <div class="col-md-9 col-xs-9">
+                                    <span class="price" th:text="${'₴' + release.getPrice()}">₴0,0</span>
+                                </div>
+                            </div>
+                        </figcaption>
+                    </div>
+                    <div class="bottom-wrap">
+                        <a th:href="@{'personal/buy/' + ${release.getId()}}">
+                            <button type="button" class="btn btn-primary float-right" data-abc="true"
+                                    th:disabled="${!release.getVisible()}">
+                                добавить в корзину</button>
+                        </a>
+
+                    </div>
+                </figure>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex justify-content-end align-items-center">
+        <div class="p-1 al-right">Показаны элементы с [[${pageData.getCurrentShowFromEntries()}]] по
+            [[${pageData.getCurrentShowToEntries()}]] из [[${pageData.getItemsSize()}]]
+        </div>
+        <div class="p-1 al-center">
+            <div class="dropdown dropup">
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <section th:each="size : ${pageData.getPageSizeItems()}">
+                        <a class="dropdown-item" href="#" th:onclick="|runPagination(1, ${size}, 0)|"
+                           th:text="${size}">@size</a>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <div class="p-1" style="margin-top: 1em !important;">
+            <ul class="pagination align-middle">
+                <li class="page-item" th:classappend="${pageData.isShowFirst() ? '' : 'disabled'}">
+                    <a class="page-link" href="#"
+                       th:onclick="|runPagination(1, ${pageData.getPageSize()}, 0)|" title="First Page"><i
+                            class="fa fa-fast-backward"></i></a>
+                </li>
+                <li class="page-item" th:classappend="${pageData.isShowPrevious() ? '' : 'disabled'}">
+                    <a class="page-link" href="#"
+                       th:onclick="|runPagination(${pageData.getCurrentPage()}, ${pageData.getPageSize()}, -1)|"
+                       title="Previous Page"><i class="fa fa-backward"></i></a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="" th:text="${pageData.getCurrentPage()}">@Model.currentPage</a>
+                </li>
+                <li class="page-item" th:classappend="${pageData.isShowNext() ? '' : 'disabled'}">
+                    <a class="page-link" href="#"
+                       th:onclick="|runPagination(${pageData.getCurrentPage()}, ${pageData.getPageSize()}, 1)|"
+                       title="Next Page"><i class="fa fa-forward"></i></a>
+                </li>
+                <li class="page-item" th:classappend="${pageData.isShowLast() ? '' : 'disabled'}">
+                    <a class="page-link" href="#"
+                       th:onclick="|runPagination(${pageData.getTotalPageSize()}, ${pageData.getPageSize()}, 0)|"
+                       title="Last Page"><i class="fa fa-fast-forward"></i></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <form method="POST" th:action="@{/releases/all}" id="personalSearch">
+        <input type="submit"
+               id="personalSearchSubmit"
+               style="visibility: hidden"
+        />
+    </form>
+
+    <span th:data-sort="${pageData.getSort()}"
+          th:data-order="${pageData.getOrder()}"
+          th:data-page="${pageData.getCurrentPage()}"
+          th:data-size="${pageData.getPageSize()}"
+          id="pageData">
+    </span>
+</div>
+<th:block layout:fragment="scripts">
+    <script type="text/javascript" th:src="@{/js/pagination.js}"></script>
+    <script type="text/javascript" th:src="@{/js/box.js}"></script>
+    <script type="text/javascript" th:src="@{/js/sort.js}"></script>
+</th:block>
+</body>
+</html>

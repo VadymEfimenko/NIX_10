@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .w {
+            min-width: 1200px;
+            align-self: center
+        }
+    </style>
+</head>
+<body>
+<div class="container-fluid">
+    <div layout:fragment="content" class="w">
+        <nav class="navbar navbar-dark bg-success navbar-fixed-top">
+            <a class="nav-item nav-link" th:href="@{/releases}">Релизы</a>
+            <a class="nav-item nav-link" th:href="@{/login}" style="cursor: pointer !important;">Войти</a>
+            <form class="d-flex" method="post" th:action="@{/releases/search}">
+                <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search" id="cubeNamed"
+                       th:name="query">
+                <button class="btn btn-outline-success" type="submit">Поиск</button>
+            </form>
+        </nav>
+        <section layout:fragment="open_content"></section>
+    </div>
+</div>
+
+<th:block layout:fragment="scripts">
+    <script type="text/javascript" th:src="@{/js/pagination.js}"></script>
+    <script type="text/javascript" th:src="@{/js/search.js}"></script>
+</th:block>
+
+</body>
+</html>

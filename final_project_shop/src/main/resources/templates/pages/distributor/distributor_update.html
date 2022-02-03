@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="utf-8">
+    <title>Редактировать Дистрибьютора</title>
+</head>
+<body>
+
+<div layout:fragment="content">
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-2">
+                <div class="card-header">
+                    <h4>Редактировать Дистрибьютора</h4>
+                </div>
+                <div class="card-body">
+                    <form action="#" th:action="@{/admin/distributors/update}" th:object="${distributor}" method="post">
+                        <div class="form-group">
+                            <input type="hidden" th:value="${id}" th:name="'id'">
+                            <label for="shopName">Название магазина</label>
+                            <input type="text" class="form-control" id="shopName"
+                                   aria-describedby="shopName" placeholder="Введите название" th:field="*{name}" th:value="${distributor.getName()}">
+                            <label for="shopAddress">Адрес магазина</label>
+                            <input type="text" class="form-control" id="shopAddress"
+                                   aria-describedby="shopAddress" placeholder="Введите адрес"
+                                   th:field="*{website}" th:value="${distributor.getWebsite()}">
+                            <label for="openTime">Тип Носителя</label>
+                            <select id="openTime" th:field="*{digitalMedia}" th:value="${distributor.getDigitalMedia()()}">
+                                <option th:each="m : ${media}"
+                                        th:value="${m.getName()()}" th:text="${m.getName()}">
+                                </option>
+                            </select>
+                            <label for="closedTime">Формат</label>
+                            <select id="closedTime" th:field="*{format}" th:value="${distributor.getFormat()}">
+                                <option th:each="f : ${format}"
+                                        th:value="${f.getName()}" th:text="${f.getName()}">
+                                </option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Подтвердить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

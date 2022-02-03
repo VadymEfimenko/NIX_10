@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/data_table}">
+<head>
+  <meta charset="utf-8">
+  <title>Релизы</title>
+</head>
+<body>
+
+<div layout:fragment="data_table_content">
+
+  <tr th:each="release,iter : ${pageData.getItems()}">
+    <td th:text="${iter.count}"></td>
+    <td th:text="${release.getName()}"></td>
+    <td th:text="${release.getMusician.getName()}"></td>
+    <td th:text="${release.getPrice()}"></td>
+    <td th:text="${release.getQuantity()}"></td>
+    <td th:text="${release.getDistributorCount()}"></td>
+    <td>
+      <a th:href="@{'/admin/releases/details/' + ${release.getId()}}" type="button" class="btn btn-info">Подробнее</a>
+    </td>
+    <td>
+      <a th:href="@{'/admin/releases/update/' + ${release.getId()}}" type="button" class="btn btn-primary">Редактировать</a>
+    </td>
+    <td>
+      <a th:href="@{'/admin/releases/delete/' + ${release.getId()}}" type="button" class="btn btn-danger">Удалить</a>
+    </td>
+  </tr>
+
+</div>
+
+</body>
+</html>
