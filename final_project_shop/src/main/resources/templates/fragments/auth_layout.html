@@ -17,7 +17,7 @@
                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
             </form>
             <div sec:authorize="hasRole('ROLE_ADMIN')">
-                <nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+                <nav class="navbar navbar-dark bg-success navbar-fixed-top">
                     <a class="nav-item nav-link" th:href="@{/admin/dashboard}">Профиль</a>
                     <a class="nav-item nav-link" th:href="@{/admin/releases}">Релизы</a>
                     <a class="nav-item nav-link" th:href="@{/admin/distributors}">Дистрибьюторы</a>
@@ -29,7 +29,7 @@
             </div>
 
             <div sec:authorize="hasRole('ROLE_PERSONAL')">
-                <nav class="navbar navbar-dark bg-dark navbar-fixed-top">
+                <nav class="navbar navbar-dark bg-success navbar-fixed-top">
                     <a class="nav-item nav-link" th:href="@{/personal/dashboard}">Профиль</a>
                     <a class="nav-item nav-link" th:href="@{/personal}">Релизы</a>
                     <a class="nav-item nav-link" th:href="@{/personal/cart}">Корзина</a>
