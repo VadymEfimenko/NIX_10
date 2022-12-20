@@ -31,6 +31,14 @@
         <module>hw_6_exeption</module>
         <module>module_2</module>
         <module>hw_7_ionio</module>
+        <module>hw_8_jdbc_web</module>
+        <module>hw_9_web_jpa</module>
+        <module>hw_10_repository</module>
+        <module>final_project_shop</module>
+        <module>modul_3</module>
+        <module>trash</module>
+        <module>input_output</module>
+        <module>multithreading</module>
     </modules>
     <packaging>pom</packaging>
 
