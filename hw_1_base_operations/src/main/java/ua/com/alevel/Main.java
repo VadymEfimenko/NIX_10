@@ -4,7 +4,11 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
+
+    //qweqwe333всывс
     public static void main(String[] args) {
+        System.out.println();
+        System.out.println(123);
         SumNumbersInString task1 = new SumNumbersInString();
         CountCharInString task2 = new CountCharInString();
         EndLessonsTime endLessonsTime = new EndLessonsTime();
