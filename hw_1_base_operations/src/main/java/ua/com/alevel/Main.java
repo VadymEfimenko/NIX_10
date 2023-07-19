@@ -5,10 +5,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    //this is cc branch
+    //xxx
     public static void main(String[] args) {
-        System.out.println();
-        System.out.println(123);
         SumNumbersInString task1 = new SumNumbersInString();
         CountCharInString task2 = new CountCharInString();
         EndLessonsTime endLessonsTime = new EndLessonsTime();
